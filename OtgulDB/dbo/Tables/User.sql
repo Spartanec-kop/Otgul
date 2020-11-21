@@ -10,6 +10,8 @@
     [isDelete]      BIT            NOT NULL,
     [lastName]      NVARCHAR (50)  NOT NULL,
     [middleName]    NVARCHAR (50)  NULL,
+    [login] NVARCHAR(50) NOT NULL, 
+    [password] NVARCHAR(50) NOT NULL, 
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([id] ASC),
     CONSTRAINT [FK_User_Department] FOREIGN KEY ([idDepartament]) REFERENCES [dbo].[Department] ([id]),
     CONSTRAINT [FK_User_Otdel] FOREIGN KEY ([idOtdel]) REFERENCES [dbo].[Otdel] ([id]),
