@@ -68,7 +68,7 @@
     <Build Include="dbo\Tables\Otgul.sql" />
     <Build Include="dbo\Tables\Rights.sql" />
     <Build Include="dbo\Tables\UserRights.sql" />
-    <Build Include="dbo\Tables\RigthRole.sql" />
+    <Build Include="dbo\Tables\RightRole.sql" />
     <Build Include="dbo\Tables\Department.sql" />
     <Build Include="dbo\Tables\Guide.sql" />
   </ItemGroup>
