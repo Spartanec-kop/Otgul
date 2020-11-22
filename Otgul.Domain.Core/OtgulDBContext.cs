@@ -15,7 +15,14 @@ namespace Otgul.DataBase
         public DbSet<Otdel> Otdel { get; set; }
         public DbSet<Guide> Guide { get; set; }
         public DbSet<Department> Department { get; set; }
-        
+        public DbSet<Otguls> Otgul { get; set; }
+        public DbSet<Rights> Rights { get; set; }
+        public DbSet<RightRole> RightRole { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<UserRights> UserRights { get; set; }
+
+
         /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentGroup>()

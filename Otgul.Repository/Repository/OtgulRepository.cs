@@ -5,55 +5,57 @@ using Otgul.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Otgul.Repository.Repository
 {
-    public class DepartmentReposirory : IDataBaseReposirory<Department>
+    public class OtgulRepository : IDataBaseRepository<Otguls>
     {
         private readonly OtgulDBContext db;
         private bool disposed = false;
 
-        public DepartmentReposirory(OtgulDBContext context)
+        public OtgulRepository(OtgulDBContext context)
         {
             this.db = context;
         }
-        public void Create(Department item)
+
+        public void Create(Otguls item)
         {
-            db.Department.Add(item);
+            db.Otgul.Add(item);
         }
 
         public void Delete(long id)
         {
-            Department department = db.Department.Find(id);
-            if (department != null)
+            Otguls otgul = db.Otgul.Find(id);
+            if (otgul != null)
             {
-                db.Department.Remove(department);
+                db.Otgul.Remove(otgul);
             }
         }
 
-        public IEnumerable<Department> Find(System.Linq.Expressions.Expression<Func<Department, bool>> predicate)
+        public IEnumerable<Otguls> Find(Expression<Func<Otguls, bool>> predicate)
         {
-            IQueryable<Department> query = db.Department.Where(predicate);
+            IQueryable<Otguls> query = db.Otgul.Where(predicate);
             return query;
         }
 
-        public IEnumerable<Department> GetAll()
+        public IEnumerable<Otguls> GetAll()
         {
-            return db.Department.ToList();
+            return db.Otgul.ToList();
         }
 
-        public Department GetId(int id)
+        public Otguls GetId(int id)
         {
-            return db.Department.FirstOrDefault(s => s.id == id);
+            return db.Otgul.FirstOrDefault(s => s.id == id);
         }
 
-        public int recordCount(System.Linq.Expressions.Expression<Func<Department, bool>> predicate)
+        public int recordCount(Expression<Func<Otguls, bool>> predicate)
         {
-            IQueryable<Department> query = db.Department.Where(predicate);
+            IQueryable<Otguls> query = db.Otgul.Where(predicate);
             return query.Count();
         }
-        public void Update(Department item)
+        public void Update(Otguls item)
         {
             db.Entry(item).State = EntityState.Modified;
         }
@@ -62,7 +64,6 @@ namespace Otgul.Repository.Repository
         {
             db.SaveChanges();
         }
-
         public virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
@@ -79,5 +80,7 @@ namespace Otgul.Repository.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
+
 }

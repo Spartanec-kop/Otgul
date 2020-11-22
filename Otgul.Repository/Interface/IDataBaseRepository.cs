@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Otgul.Repository.Interface
 {
-    public interface IDataBaseReposirory<T> : IDisposable where T : class
+    public interface IDataBaseRepository<T> : IDisposable where T : class
     {
         IEnumerable<T> GetAll();
         T GetId(int id);

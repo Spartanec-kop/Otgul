@@ -21,4 +21,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="middleName" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="4e310219-8f6f-4735-88b7-2772a315bd70" ChangeDateTime="11/22/2020 10:07:20">
+    <Property Name="ElementName" Value="[dbo].[AK_User_Column]" />
+    <Property Name="ElementType" Value="SqlUniqueConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[AK_User_login]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="19a3e259-9774-4e4a-85bd-85d1ba1c8df8" ChangeDateTime="11/22/2020 10:24:01">
+    <Property Name="ElementName" Value="[dbo].[User].[Tabel]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="tabel" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bcf4e1b5-034f-47c8-8125-034a14952461" ChangeDateTime="11/22/2020 10:26:28">
+    <Property Name="ElementName" Value="[dbo].[User].[isDelete]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="isDeleted" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="883f7e64-3e4d-4518-b567-a89130964821" ChangeDateTime="11/22/2020 10:39:49">
+    <Property Name="ElementName" Value="[dbo].[UserRights].[idRight]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserRights]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idRights" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="27c71244-bab7-443c-8571-d25f46c5a3ac" ChangeDateTime="11/22/2020 10:41:33">
+    <Property Name="ElementName" Value="[dbo].[RigthRole].[idPRight]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RigthRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idRights" />
+  </Operation>
 </Operations>
