@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otgul.DataBase.Models
+namespace Otguls.DataBase.Models
 {
     public class User
     {
         public int id { get; set; }
-        public int idRole { get; set; }
         public string tabel { get; set; }
         public string firstName { get; set; }
         public string workStatus { get; set; }
@@ -19,5 +18,11 @@ namespace Otgul.DataBase.Models
         public string middleName { get; set; }
         public string login { get; set; }
         public string password { get; set; }
+        public List<UserRights> UserRights { get; set; }
+
+        public User()
+        {
+            UserRights = new List<UserRights>();
+        } 
     }
 }

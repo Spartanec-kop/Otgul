@@ -1,6 +1,6 @@
 using System;
 
-namespace Otgul
+namespace Otguls
 {
     public class WeatherForecast
     {

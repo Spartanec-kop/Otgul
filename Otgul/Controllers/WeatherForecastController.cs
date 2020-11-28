@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Otgul.Controllers
+namespace Otguls.Controllers
 {
     [ApiController]
     [Route("[controller]")]

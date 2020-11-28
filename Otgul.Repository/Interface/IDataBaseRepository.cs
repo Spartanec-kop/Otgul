@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otgul.Repository.Interface
+namespace Otguls.Repository.Interface
 {
     public interface IDataBaseRepository<T> : IDisposable where T : class
     {

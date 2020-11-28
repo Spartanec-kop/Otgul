@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otgul.DataBase.Models
+namespace Otguls.DataBase.Models
 {
     public class Department
     {

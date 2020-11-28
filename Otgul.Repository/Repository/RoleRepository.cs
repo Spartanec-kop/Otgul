@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Otgul.DataBase;
-using Otgul.DataBase.Models;
-using Otgul.Repository.Interface;
+using Otguls.DataBase;
+using Otguls.DataBase.Models;
+using Otguls.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Otgul.Repository.Repository
+namespace Otguls.Repository.Repository
 {
     public class RoleRepository : IDataBaseRepository<Role>
     {
@@ -21,37 +21,37 @@ namespace Otgul.Repository.Repository
         }
         public void Create(Role item)
         {
-            db.Role.Add(item);
+            db.Roles.Add(item);
         }
 
         public void Delete(long id)
         {
-            Role role = db.Role.Find(id);
+            Role role = db.Roles.Find(id);
             if (role != null)
             {
-                db.Role.Remove(role);
+                db.Roles.Remove(role);
             }
         }
                 
         public IEnumerable<Role> Find(Expression<Func<Role, bool>> predicate)
         {
-            IQueryable<Role> query = db.Role.Where(predicate);
+            IQueryable<Role> query = db.Roles.Where(predicate);
             return query;
         }
 
         public IEnumerable<Role> GetAll()
         {
-            return db.Role.ToList();
+            return db.Roles.Include(s => s.RightRoles).ThenInclude(f => f.Rights).ToList();
         }
 
         public Role GetId(int id)
         {
-            return db.Role.FirstOrDefault(s => s.id == id);
+            return db.Roles.Include(s => s.RightRoles).ThenInclude(f => f.Rights).FirstOrDefault(s => s.id == id);
         }
 
         public int recordCount(Expression<Func<Role, bool>> predicate)
         {
-            IQueryable<Role> query = db.Role.Where(predicate);
+            IQueryable<Role> query = db.Roles.Where(predicate);
             return query.Count();
         }
 

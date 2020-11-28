@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Otgul.DataBase;
-using Otgul.DataBase.Models;
-using Otgul.Repository.Interface;
+using Otguls.DataBase;
+using Otguls.DataBase.Models;
+using Otguls.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Otgul.Repository.Repository
+namespace Otguls.Repository.Repository
 {
-    public class RightsRepository : IDataBaseRepository<Rights>
+    public class RightsRepository : IDataBaseRepository<Right>
     {
         private readonly OtgulDBContext db;
         private bool disposed = false;
@@ -19,43 +19,43 @@ namespace Otgul.Repository.Repository
         {
             this.db = context;
         }
-        public void Create(Rights item)
+        public void Create(Right item)
         {
             db.Rights.Add(item);
         }
 
         public void Delete(long id)
         {
-            Rights rights = db.Rights.Find(id);
+            Right rights = db.Rights.Find(id);
             if (rights != null)
             {
                 db.Rights.Remove(rights);
             }
         }
                 
-        public IEnumerable<Rights> Find(Expression<Func<Rights, bool>> predicate)
+        public IEnumerable<Right> Find(Expression<Func<Right, bool>> predicate)
         {
-            IQueryable<Rights> query = db.Rights.Where(predicate);
+            IQueryable<Right> query = db.Rights.Where(predicate);
             return query;
         }
 
-        public IEnumerable<Rights> GetAll()
+        public IEnumerable<Right> GetAll()
         {
             return db.Rights.ToList();
         }
 
-        public Rights GetId(int id)
+        public Right GetId(int id)
         {
             return db.Rights.FirstOrDefault(s => s.id == id);
         }
 
-        public int recordCount(Expression<Func<Rights, bool>> predicate)
+        public int recordCount(Expression<Func<Right, bool>> predicate)
         {
-            IQueryable<Rights> query = db.Rights.Where(predicate);
+            IQueryable<Right> query = db.Rights.Where(predicate);
             return query.Count();
         }
 
-        public void Update(Rights item)
+        public void Update(Right item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

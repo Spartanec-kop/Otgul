@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Otgul.DataBase.Models;
+using Otguls.DataBase.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otgul.DataBase
+namespace Otguls.DataBase
 {
     public class OtgulDBContext : DbContext
     {
@@ -12,31 +12,46 @@ namespace Otgul.DataBase
             : base(options)
         {
         }
-        public DbSet<Otdel> Otdel { get; set; }
-        public DbSet<Guide> Guide { get; set; }
-        public DbSet<Department> Department { get; set; }
-        public DbSet<Otguls> Otgul { get; set; }
-        public DbSet<Rights> Rights { get; set; }
+        public DbSet<Otdel> Otdels { get; set; }
+        public DbSet<Guide> Guides { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Models.Otgul> Otguls { get; set; }
+        public DbSet<Right> Rights { get; set; }
         public DbSet<RightRole> RightRole { get; set; }
-        public DbSet<Role> Role { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<UserRights> UserRights { get; set; }
 
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StudentGroup>()
-                .HasKey(t => new { t.StudentId, t.GroupId });
 
-            modelBuilder.Entity<StudentGroup>()
-                .HasOne(sc => sc.Student)
-                .WithMany(s => s.StudentGroups)
-                .HasForeignKey(sc => sc.StudentId);
+            modelBuilder.Entity<UserRights>()
+               .HasKey(t => new { t.RightsId, t.UserId });
 
-            modelBuilder.Entity<StudentGroup>()
-                .HasOne(sc => sc.Group)
-                .WithMany(c => c.StudentGroups)
-                .HasForeignKey(sc => sc.GroupId);
-        }*/
+            modelBuilder.Entity<UserRights>()
+                .HasOne(sc => sc.User)
+                .WithMany(s => s.UserRights)
+                .HasForeignKey(sc => sc.UserId);
+
+            modelBuilder.Entity<UserRights>()
+                .HasOne(sc => sc.Right)
+                .WithMany(c => c.UserRights)
+                .HasForeignKey(sc => sc.RightsId);
+
+
+            modelBuilder.Entity<RightRole>()
+               .HasKey(t => new { t.RightId, t.RoleId });
+
+            modelBuilder.Entity<RightRole>()
+                .HasOne(sc => sc.Rights)
+                .WithMany(s => s.RightRoles)
+                .HasForeignKey(sc => sc.RightId);
+
+            modelBuilder.Entity<RightRole>()
+                .HasOne(sc => sc.Roles)
+                .WithMany(c => c.RightRoles)
+                .HasForeignKey(sc => sc.RoleId);
+        }
     }
 }

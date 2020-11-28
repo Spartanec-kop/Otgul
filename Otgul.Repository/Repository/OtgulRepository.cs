@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Otgul.DataBase;
-using Otgul.DataBase.Models;
-using Otgul.Repository.Interface;
+using Otguls.DataBase;
+using Otguls.DataBase.Models;
+using Otguls.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Otgul.Repository.Repository
+namespace Otguls.Repository.Repository
 {
-    public class OtgulRepository : IDataBaseRepository<Otguls>
+    public class OtgulRepository : IDataBaseRepository<DataBase.Models.Otgul>
     {
         private readonly OtgulDBContext db;
         private bool disposed = false;
@@ -20,42 +20,42 @@ namespace Otgul.Repository.Repository
             this.db = context;
         }
 
-        public void Create(Otguls item)
+        public void Create(DataBase.Models.Otgul item)
         {
-            db.Otgul.Add(item);
+            db.Otguls.Add(item);
         }
 
         public void Delete(long id)
         {
-            Otguls otgul = db.Otgul.Find(id);
+            Otgul otgul = db.Otguls.Find(id);
             if (otgul != null)
             {
-                db.Otgul.Remove(otgul);
+                db.Otguls.Remove(otgul);
             }
         }
 
-        public IEnumerable<Otguls> Find(Expression<Func<Otguls, bool>> predicate)
+        public IEnumerable<DataBase.Models.Otgul> Find(Expression<Func<DataBase.Models.Otgul, bool>> predicate)
         {
-            IQueryable<Otguls> query = db.Otgul.Where(predicate);
+            IQueryable<Otgul> query = db.Otguls.Where(predicate);
             return query;
         }
 
-        public IEnumerable<Otguls> GetAll()
+        public IEnumerable<DataBase.Models.Otgul> GetAll()
         {
-            return db.Otgul.ToList();
+            return db.Otguls.ToList();
         }
 
-        public Otguls GetId(int id)
+        public DataBase.Models.Otgul GetId(int id)
         {
-            return db.Otgul.FirstOrDefault(s => s.id == id);
+            return db.Otguls.FirstOrDefault(s => s.id == id);
         }
 
-        public int recordCount(Expression<Func<Otguls, bool>> predicate)
+        public int recordCount(Expression<Func<DataBase.Models.Otgul, bool>> predicate)
         {
-            IQueryable<Otguls> query = db.Otgul.Where(predicate);
+            IQueryable<Otgul> query = db.Otguls.Where(predicate);
             return query.Count();
         }
-        public void Update(Otguls item)
+        public void Update(DataBase.Models.Otgul item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

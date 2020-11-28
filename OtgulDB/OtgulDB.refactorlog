@@ -56,4 +56,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="idRights" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="fee61df9-1f55-49d3-9493-f24d6d57563d" ChangeDateTime="11/28/2020 13:42:32">
+    <Property Name="ElementName" Value="[dbo].[UserRights].[idUser]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserRights]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b9ff477b-c354-430b-82c4-0dec0c8da475" ChangeDateTime="11/28/2020 13:42:38">
+    <Property Name="ElementName" Value="[dbo].[UserRights].[idRights]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserRights]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RightsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ecfdfd04-982c-448d-9e0a-7d4068abb3b2" ChangeDateTime="11/28/2020 14:03:10">
+    <Property Name="ElementName" Value="[dbo].[RigthRole].[idRole]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RigthRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RoleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8596d326-acfb-4f9a-9c4b-ce512c6bdb90" ChangeDateTime="11/28/2020 14:03:17">
+    <Property Name="ElementName" Value="[dbo].[RigthRole].[idRights]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RigthRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RightsId" />
+  </Operation>
 </Operations>

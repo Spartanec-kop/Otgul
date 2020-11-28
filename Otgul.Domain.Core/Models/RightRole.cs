@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otgul.DataBase.Models
+namespace Otguls.DataBase.Models
 {
     public class RightRole
     {
-        public int idRole { get; set; }
-        public int idRight { get; set; }
+        public int RoleId { get; set; }
+        public int RightId { get; set; }
+        public Right Rights { get; set; }
+        public Role Roles { get; set; }
 
     }
 }

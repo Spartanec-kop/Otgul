@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Otgul.DataBase;
-using Otgul.DataBase.Models;
-using Otgul.Repository.Interface;
+using Otguls.DataBase;
+using Otguls.DataBase.Models;
+using Otguls.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Otgul.Repository.Repository
+namespace Otguls.Repository.Repository
 {
     public class OtdelRepository : IDataBaseRepository<Otdel>
     {
@@ -21,37 +21,37 @@ namespace Otgul.Repository.Repository
         }
         public void Create(Otdel item)
         {
-            db.Otdel.Add(item);
+            db.Otdels.Add(item);
         }
 
         public void Delete(long id)
         {
-            Otdel otdel = db.Otdel.Find(id);
+            Otdel otdel = db.Otdels.Find(id);
             if (otdel != null)
             {
-                db.Otdel.Remove(otdel);
+                db.Otdels.Remove(otdel);
             }
         }
                
         public IEnumerable<Otdel> Find(Expression<Func<Otdel, bool>> predicate)
         {
-            IQueryable<Otdel> query = db.Otdel.Where(predicate);
+            IQueryable<Otdel> query = db.Otdels.Where(predicate);
             return query;
         }
 
         public IEnumerable<Otdel> GetAll()
         {
-            return db.Otdel.ToList(); ;
+            return db.Otdels.ToList(); ;
         }
 
         public Otdel GetId(int id)
         {
-            return db.Otdel.FirstOrDefault(s => s.id == id);
+            return db.Otdels.FirstOrDefault(s => s.id == id);
         }
 
         public int recordCount(Expression<Func<Otdel, bool>> predicate)
         {
-            IQueryable<Otdel> query = db.Otdel.Where(predicate);
+            IQueryable<Otdel> query = db.Otdels.Where(predicate);
             return query.Count();
         }
                 
