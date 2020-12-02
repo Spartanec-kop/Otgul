@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otguls.DataBase.Models
+namespace Otgul.Models
 {
     public class Otdel
     {

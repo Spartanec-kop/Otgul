@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Otguls.DataBase.Models;
+using Otgul.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otguls.DataBase
+namespace Otgul.DataBase
 {
     public class OtgulDBContext : DbContext
     {
@@ -15,7 +15,7 @@ namespace Otguls.DataBase
         public DbSet<Otdel> Otdels { get; set; }
         public DbSet<Guide> Guides { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Models.Otgul> Otguls { get; set; }
+        public DbSet<OtgulRecord> Otgul { get; set; }
         public DbSet<Right> Rights { get; set; }
         public DbSet<RightRole> RightRole { get; set; }
         public DbSet<Role> Roles { get; set; }

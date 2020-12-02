@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Otgul.Api", "Otgul\Otgul.Ap
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "OtgulDB", "OtgulDB\OtgulDB.sqlproj", "{FA0FB657-F673-4537-9197-6AC64D4C1AF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otgul.DataBase", "Otgul.Domain.Core\Otgul.DataBase.csproj", "{904AFDDC-2CC0-4D74-97F1-BB5CB4D99E5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Otgul.Models", "Otgul.Domain.Core\Otgul.Models.csproj", "{904AFDDC-2CC0-4D74-97F1-BB5CB4D99E5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otgul.Repository", "Otgul.Repository\Otgul.Repository.csproj", "{BDC977A6-8540-4B63-BD13-6EADF32AC393}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Otgul.DataBase.Repository", "Otgul.Repository\Otgul.DataBase.Repository.csproj", "{BDC977A6-8540-4B63-BD13-6EADF32AC393}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otgul.Services", "Otgul.Services\Otgul.Services.csproj", "{633FE864-8F49-4B08-96F5-2097FEE41093}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Otgul.Services", "Otgul.Services\Otgul.Services.csproj", "{633FE864-8F49-4B08-96F5-2097FEE41093}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

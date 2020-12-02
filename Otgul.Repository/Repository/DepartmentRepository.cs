@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Otguls.DataBase;
-using Otguls.DataBase.Models;
-using Otguls.Repository.Interface;
+using Otgul.DataBase;
+using Otgul.Models;
+using Otgul.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Otguls.Repository.Repository
+namespace Otgul.DataBase.Repository.Repository
 {
     public class DepartmentRepository : IDataBaseRepository<Department>
     {

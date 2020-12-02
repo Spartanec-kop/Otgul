@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Otgul.Domain.Core\Otgul.DataBase.csproj" />
-  </ItemGroup>
-
 </Project>

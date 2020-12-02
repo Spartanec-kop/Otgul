@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otguls.DataBase.Models
+namespace Otgul.Models
 {
-    public class Otgul
+    public class OtgulRecord
     {
         public int id { get; set; }
         public int idUser { get; set; }
