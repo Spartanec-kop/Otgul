@@ -84,4 +84,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RightsId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="b80cf6ee-4534-4611-8b20-3b13e8714798" ChangeDateTime="12/02/2020 17:02:39">
+    <Property Name="ElementName" Value="[dbo].[OtgulRecord]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="OtgulRecord" />
+  </Operation>
 </Operations>

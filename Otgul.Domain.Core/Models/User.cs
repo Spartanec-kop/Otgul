@@ -6,23 +6,25 @@ namespace Otgul.Models
 {
     public class User
     {
-        public int id { get; set; }
-        public string tabel { get; set; }
-        public string firstName { get; set; }
-        public string workStatus { get; set; }
-        public int idOtdel { get; set; }
-        public int idDepartament { get; set; }
-        public string phone { get; set; }
-        public bool isDeleted { get; set; }
-        public string lastName { get; set; }
-        public string middleName { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
+        public int Id { get; set; }
+        public string Tabel { get; set; }
+        public string FirstName { get; set; }
+        public string WorkStatus { get; set; }
+        public Otdel Otdel { get; set; }
+        public Department Department { get; set; }
+        public string Phone { get; set; }
+        public bool IsDeleted { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public Role Role { get; set; }
         public List<UserRights> UserRights { get; set; }
 
         public User()
         {
             UserRights = new List<UserRights>();
+            IsDeleted = false;
         } 
     }
 }

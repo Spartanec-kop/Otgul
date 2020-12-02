@@ -6,10 +6,10 @@ namespace Otgul.Models
 {
     public class Otdel
     {
-        public int id { get; set; }
-        public int codOtdela { get; set; }
-        public string nameOtdela { get; set; }
-        public string director { get; set; }
+        public int Id { get; set; }
+        public int CodOtdela { get; set; }
+        public string NameOtdela { get; set; }
+        public User Director { get; set; }
 
     }
 }

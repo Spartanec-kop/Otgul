@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[OtgulRecord] (
+﻿CREATE TABLE [dbo].OtgulRecord (
     [id]          INT            NOT NULL,
     [idUser]      INT            NOT NULL,
     [action]      NVARCHAR (50)  NOT NULL,

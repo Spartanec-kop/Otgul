@@ -6,14 +6,14 @@ namespace Otgul.Models
 {
     public class OtgulRecord
     {
-        public int id { get; set; }
-        public int idUser { get; set; }
-        public string action { get; set; }
-        public int minutCount { get; set; }
-        public int idInitiator { get; set; }
-        public DateTime data { get; set; }
-        public int idGuide { get; set; }
-        public DateTime eventData { get; set; }
-        public string comment { get; set; }
+        public int Id { get; set; }
+        public User User { get; set; }
+        public string Action { get; set; }
+        public int MinutCount { get; set; }
+        public User IdInitiator { get; set; }
+        public DateTime Date { get; set; }
+        public Guide Guide { get; set; }
+        public DateTime EventDate { get; set; }
+        public string Comment { get; set; }
     }
 }

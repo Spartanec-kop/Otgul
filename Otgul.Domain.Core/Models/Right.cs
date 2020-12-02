@@ -6,8 +6,8 @@ namespace Otgul.Models
 {
     public class Right
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public List<UserRights> UserRights { get; set; }
         public List<RightRole> RightRoles { get; set; }
 

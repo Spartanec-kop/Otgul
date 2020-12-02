@@ -6,9 +6,9 @@ namespace Otgul.Models
 {
     public class Department
     {
-        public int id { get; set; }
-        public int departmentCode { get; set; }
-        public string name { get; set; }
-        public string chief { get; set; }
+        public int Id { get; set; }
+        public int DepartmentCode { get; set; }
+        public string Name { get; set; }
+        public User Chief { get; set; }
     }
 }
