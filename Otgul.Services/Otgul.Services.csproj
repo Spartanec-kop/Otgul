@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Otgul.Domain.Core\Otgul.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Otgul.Repository\Otgul.DataBase.Repository.csproj" />
   </ItemGroup>
 
 </Project>

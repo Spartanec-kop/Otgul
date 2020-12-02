@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Otgul.Services.Interfaces
 {
-    public interface IUsersService
+    public interface IReportService
     {
-        void CreateUser(User user);
+        string CreateWordReportForUser(User user);
+        string CreateExcelReportForUser(User user);
     }
 }
