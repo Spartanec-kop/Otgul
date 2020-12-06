@@ -4,7 +4,9 @@ using Otgul.Repository.Interface;
 using Otgul.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Otgul.Services.Services
 {
@@ -31,6 +33,11 @@ namespace Otgul.Services.Services
             return _userRepository.GetId(userId);
         }
 
+        public User GetUserFromLogin(string login)
+        {
+            return _userRepository.Find(f => f.Login == login).FirstOrDefault();
+        }
+
         public Role GetUserRoleFromId(int userId)
         {
             return _userRepository.GetId(userId).Role;
@@ -49,8 +56,11 @@ namespace Otgul.Services.Services
                 _userRepository.Update(user);
             }
         }
-
-        public void UpdateUse(User user)
+        public User GetUserFromLogoPass(string login, string password)
+        {
+            return _userRepository.Find(r => r.Login == login && r.Password == password).First();         
+        }
+        public void UpdateUser(User user)
         {
             _userRepository.Update(user);
         }
