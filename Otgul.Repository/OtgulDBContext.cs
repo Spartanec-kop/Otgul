@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Otgul.DataBase
+namespace Otgul.DataBase.Repository
 {
     public class OtgulDBContext : DbContext
     {

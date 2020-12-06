@@ -46,7 +46,7 @@ namespace Otgul.DataBase.Repository.Repository
 
         public Otdel GetId(int id)
         {
-            return db.Otdels.FirstOrDefault(s => s.id == id);
+            return db.Otdels.FirstOrDefault(s => s.Id == id);
         }
 
         public int recordCount(Expression<Func<Otdel, bool>> predicate)

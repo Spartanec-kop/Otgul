@@ -13,6 +13,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Otgul.DataBase;
+using Otgul.DataBase.Repository;
+using Otgul.DataBase.Repository.Repository;
+using Otgul.Models;
+using Otgul.Repository.Interface;
 using Otgul.Services.Interfaces;
 using Otgul.Services.Security;
 using Otgul.Services.Services;
@@ -34,7 +38,8 @@ namespace Otgul
         {
             services.AddDbContext<OtgulDBContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString(nameof(OtgulDBContext))));
-            
+
+            services.AddTransient<IDataBaseRepository<User>, UserRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddControllers();          
@@ -55,6 +60,8 @@ namespace Otgul
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 

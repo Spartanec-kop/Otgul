@@ -48,7 +48,7 @@ namespace Otgul.DataBase.Repository.Repository
 
         public Guide GetId(int id)
         {
-            return db.Guides.FirstOrDefault(s => s.id == id);
+            return db.Guides.FirstOrDefault(s => s.Id == id);
         }
 
         public int recordCount(Expression<Func<Guide, bool>> predicate)

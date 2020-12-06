@@ -45,7 +45,7 @@ namespace Otgul.DataBase.Repository.Repository
 
         public Department GetId(int id)
         {
-            return db.Departments.FirstOrDefault(s => s.id == id);
+            return db.Departments.FirstOrDefault(s => s.Id == id);
         }
 
         public int recordCount(System.Linq.Expressions.Expression<Func<Department, bool>> predicate)

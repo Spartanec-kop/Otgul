@@ -46,7 +46,7 @@ namespace Otgul.DataBase.Repository.Repository
 
         public Role GetId(int id)
         {
-            return db.Roles.Include(s => s.RightRoles).ThenInclude(f => f.Rights).FirstOrDefault(s => s.id == id);
+            return db.Roles.Include(s => s.RightRoles).ThenInclude(f => f.Rights).FirstOrDefault(s => s.Id == id);
         }
 
         public int recordCount(Expression<Func<Role, bool>> predicate)

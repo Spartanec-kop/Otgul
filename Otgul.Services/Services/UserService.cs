@@ -58,7 +58,15 @@ namespace Otgul.Services.Services
         }
         public User GetUserFromLogoPass(string login, string password)
         {
-            return _userRepository.Find(r => r.Login == login && r.Password == password).First();         
+            IEnumerable<User> users = _userRepository.Find(r => r.Login == login && r.Password == password).ToList();
+            if (users != null && users.Count() > 0)
+            {
+                return users.First();
+            } else
+            {
+                return null;
+            }
+                     
         }
         public void UpdateUser(User user)
         {

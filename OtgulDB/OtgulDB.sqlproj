@@ -62,15 +62,15 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Role.sql" />
-    <Build Include="dbo\Tables\Otdel.sql" />
-    <Build Include="dbo\Tables\User.sql" />
-    <Build Include="dbo\Tables\Otgul.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\Otdels.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\OtgulRecords.sql" />
     <Build Include="dbo\Tables\Rights.sql" />
     <Build Include="dbo\Tables\UserRights.sql" />
     <Build Include="dbo\Tables\RightRole.sql" />
-    <Build Include="dbo\Tables\Department.sql" />
-    <Build Include="dbo\Tables\Guide.sql" />
+    <Build Include="dbo\Tables\Departments.sql" />
+    <Build Include="dbo\Tables\Guides.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="OtgulDB.refactorlog" />

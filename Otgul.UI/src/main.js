@@ -4,6 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+// глобальная регистрация базовых компонентов
+import './components/base/_globals'
 Vue.config.productionTip = false
 
 new Vue({

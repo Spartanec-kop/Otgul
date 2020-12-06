@@ -91,4 +91,60 @@
     <Property Name="ParentElementType" Value="SqlSchema" />
     <Property Name="NewName" Value="OtgulRecord" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="55a5d5cc-d19b-47b0-bbdd-1ea880ab4a61" ChangeDateTime="12/06/2020 15:27:27">
+    <Property Name="ElementName" Value="[dbo].[Users].[idRole]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="roleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="895c9550-ed18-482c-b58e-e3f2d744d39e" ChangeDateTime="12/06/2020 15:27:46">
+    <Property Name="ElementName" Value="[dbo].[Users].[idOtdel]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OtdelId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f74a90c1-2c04-40fa-9642-c3cccbb69263" ChangeDateTime="12/06/2020 15:27:55">
+    <Property Name="ElementName" Value="[dbo].[Users].[OtdelId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="otdelId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6fed1492-87cd-4f50-9e69-9b3eaebd6319" ChangeDateTime="12/06/2020 15:28:32">
+    <Property Name="ElementName" Value="[dbo].[Users].[idDepartament]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="departamentId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1c25f0e5-b048-44d8-a153-d0ad2dca6d8d" ChangeDateTime="12/06/2020 15:29:19">
+    <Property Name="ElementName" Value="[dbo].[OtgulRecords].[idUser]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[OtgulRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="userId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6a769696-7ee1-4fe3-bc34-738dad063b1f" ChangeDateTime="12/06/2020 15:29:31">
+    <Property Name="ElementName" Value="[dbo].[OtgulRecords].[idInitiator]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[OtgulRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="initiatorId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b1116fad-1c77-4cbc-8402-004047e24525" ChangeDateTime="12/06/2020 15:29:41">
+    <Property Name="ElementName" Value="[dbo].[OtgulRecords].[idGuide]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[OtgulRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="guideId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cdd37b34-97d8-4bcd-a1f3-cf821ee39223" ChangeDateTime="12/06/2020 16:03:43">
+    <Property Name="ElementName" Value="[dbo].[Users].[departamentId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="departmentId" />
+  </Operation>
 </Operations>
