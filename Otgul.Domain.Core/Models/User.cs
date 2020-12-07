@@ -8,10 +8,10 @@ namespace Otgul.Models
     public class User
     {
         public int Id { get; set; }
-        public string Tabel { get; set; }
+        public Int16 Tabel { get; set; }
         public string FirstName { get; set; }
         public string WorkStatus { get; set; }
-        //public int OtdelId { get; set; }
+        public int OtdelId { get; set; }
         
         [ForeignKey("otdelId")]
         public Otdel Otdel { get; set; }
@@ -25,7 +25,7 @@ namespace Otgul.Models
         public string MiddleName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        //public int RoleId { get; set; }
+        public int RoleId { get; set; }
         
         [ForeignKey("roleId")]
         public Role Role { get; set; }

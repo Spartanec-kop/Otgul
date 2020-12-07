@@ -57,14 +57,16 @@ namespace Otgul.Api.Controllers
                 List<Claim> claims = identity.Claims.ToList();
 
                 User user = _userService.GetUserFromLogin(claims[0].Value);
-                return new {
+                var qwer = new {
                     id = user.Id,
                     login = user.Login,
                     firstName = user.FirstName,
                     lastName = user.LastName,
                     middleName = user.MiddleName,
-                    rights = user.UserRights.Select(s => s.Right)
+                    role = user.Role.Name,
+                    rights = user.UserRights.Select(s => s.Right.Name).ToList()
                 };
+                return qwer;
             }
             else
             {

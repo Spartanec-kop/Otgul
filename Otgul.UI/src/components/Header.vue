@@ -2,13 +2,13 @@
 .header-wrapper
   ul.header-sections
     li.header-section-item.header-section-student(
-      :class="{active: activeContent === 'student'}"
-      @click="navigate('student')"
-    ) Студенты
+      :class="{active: activeContent === 'otgul'}"
+      @click="navigate('otgul')"
+    ) Отгулы
     li.header-section-item.header-section-group(
-      :class="{active: activeContent === 'group'}"
-      @click="navigate('group')"
-    ) Группы
+      :class="{active: activeContent === 'users'}"
+      @click="navigate('users')"
+    ) Пользователи
   .logout(
     @click="showModal({ component: 'ModalLogout', showClose: false })"
   )

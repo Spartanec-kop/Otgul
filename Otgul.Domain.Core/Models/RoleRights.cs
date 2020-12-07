@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Otgul.Models
 {
-    public class RightRole
+    public class RoleRights
     {
         public int RoleId { get; set; }
         public int RightId { get; set; }
-        public Right Rights { get; set; }
-        public Role Roles { get; set; }
+        public Right Right { get; set; }
+        public Role Role { get; set; }
 
     }
 }

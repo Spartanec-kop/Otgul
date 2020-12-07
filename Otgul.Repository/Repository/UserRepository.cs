@@ -34,7 +34,14 @@ namespace Otgul.DataBase.Repository.Repository
 
         public IEnumerable<User> Find(System.Linq.Expressions.Expression<Func<User, bool>> predicate)
         {
-            IQueryable<User> query = db.Users.Where(predicate);
+            IQueryable<User> query = db.Users
+                .Where(predicate)
+                .Include(s => s.Department)
+                .Include(s => s.Otdel)
+                .Include(s => s.Role)
+                .ThenInclude(f => f.RoleRights)
+                .Include(s => s.UserRights)
+                .ThenInclude(f => f.Right);
             return query;
         }
 

@@ -9,10 +9,10 @@ namespace Otgul.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
-       public List<RightRole> RightRoles { get; set; }
+       public List<RoleRights> RoleRights { get; set; }
         public Role()
         {
-            RightRoles = new List<RightRole>();
+            RoleRights = new List<RoleRights>();
         }
     }
 }

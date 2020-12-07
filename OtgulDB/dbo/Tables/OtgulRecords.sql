@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].OtgulRecords (
-    [id]          INT            NOT NULL,
+    [id]          INT            IDENTITY (1, 1) NOT NULL,
     [userId]      INT            NOT NULL,
     [action]      NVARCHAR (50)  NOT NULL,
     [minutCount]  INT            NOT NULL,

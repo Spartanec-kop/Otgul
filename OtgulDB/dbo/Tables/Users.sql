@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Users] (
-    [id]            INT            NOT NULL,
+    [id]            INT            IDENTITY (1, 1) NOT NULL,
     [roleId]        INT            NOT NULL,
     [tabel]         SMALLINT       NOT NULL,
     [firstName]     NVARCHAR (100) NOT NULL,

@@ -10,8 +10,7 @@ namespace Otgul.Models
         public int Id { get; set; }
         public int DepartmentCode { get; set; }
         public string Name { get; set; }
-        public int Chief { get; set; }
-        [ForeignKey("chief")]
-        public User ChiefUser { get; set; }
+        public string Chief { get; set; }
+
     }
 }

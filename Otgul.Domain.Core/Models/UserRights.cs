@@ -7,7 +7,7 @@ namespace Otgul.Models
     public class UserRights
     {
         public int UserId { get; set; }
-        public int RightsId { get; set; }
+        public int RightId { get; set; }
         public User User { get; set; }
         public Right Right { get; set; }
     }

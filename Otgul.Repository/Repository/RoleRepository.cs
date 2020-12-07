@@ -41,12 +41,12 @@ namespace Otgul.DataBase.Repository.Repository
 
         public IEnumerable<Role> GetAll()
         {
-            return db.Roles.Include(s => s.RightRoles).ThenInclude(f => f.Rights).ToList();
+            return db.Roles.Include(s => s.RoleRights).ThenInclude(f => f.Right).ToList();
         }
 
         public Role GetId(int id)
         {
-            return db.Roles.Include(s => s.RightRoles).ThenInclude(f => f.Rights).FirstOrDefault(s => s.Id == id);
+            return db.Roles.Include(s => s.RoleRights).ThenInclude(f => f.Right).FirstOrDefault(s => s.Id == id);
         }
 
         public int recordCount(Expression<Func<Role, bool>> predicate)
