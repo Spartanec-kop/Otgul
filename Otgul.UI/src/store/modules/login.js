@@ -10,7 +10,7 @@ export default {
   },
   mutations: {
     SET_USER: (state, data) => (state.user = data),
-    SET_LOGIN_ERROR: (state, data) => (state.loginError = data.error.message),
+    SET_LOGIN_ERROR: (state, message) => (state.loginError = message),
     SET_IS_LOADING: (state, isLoading) => (state.isLoading = isLoading)
   },
   actions: {
@@ -29,13 +29,26 @@ export default {
         .get(`/api/User/auth?login=${loginData.login}&password=${loginData.password}`)
         .then(response => {
           commit('SET_IS_LOADING', false)
+          commit('SET_LOGIN_ERROR', '')
           localStorage.setItem('token', response.data)
           axios.defaults.headers.Authorization = `Bearer ${response.data}`
-          // router.push({ path: 'student' })
-          dispatch('navigate', 'student', { root: true })
+          dispatch('navigate', 'otgul', { root: true })
         })
         .catch(error => {
-          console.log(error.response)
+          if (error.response) {
+            console.log(error.response)
+            switch (error.response.status) {
+              case 404:
+                commit('SET_LOGIN_ERROR', 'Логин или пароль введены неверно')
+                break
+              default:
+                commit('SET_LOGIN_ERROR', error.response.statusText)
+                break
+            }
+          } else {
+            commit('SET_LOGIN_ERROR', error)
+          }
+          console.log(error)
           commit('SET_IS_LOADING', false)
         })
     },

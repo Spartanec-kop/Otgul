@@ -24,6 +24,7 @@
             BaseInputValidate.form-input-input(
               v-model="password"
               firstClass=""
+              type="password"
               :isInvalid="validation.hasError('password')"
               :toolTipText="validation.firstError('password')"
             )
@@ -125,6 +126,7 @@ export default {
   padding: 40px;
 }
 .error-message{
+  margin-top: 20px;
   color: red;
   height: 30px;
   font-weight: 600;
