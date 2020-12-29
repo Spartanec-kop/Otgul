@@ -3,7 +3,7 @@
     ModalWindow(
       v-if="showModal"
     )
-    .header(
+    header.header(
       v-if="Object.keys(user).length > 0"
     )
       Header
@@ -49,12 +49,15 @@ ul {
   margin: 0px;
 }
 input {
-  margin-top: 5px;
   background: #FFFFFF;
   border: 1px solid #C0C0C0;
   box-sizing: border-box;
   border-radius: 4px;
   height: 25px;
+}
+.body-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -65,7 +68,7 @@ input {
   font-weight: normal;
   font-size: 16px;
   line-height: 14px;
-  color: #969696;
+  // color: #969696;
 }
 
 </style>
