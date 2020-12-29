@@ -3,7 +3,7 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:62561'
 axios.defaults.baseURL = baseUrl
 axios.defaults.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-
+// получение нового токена в случае протухания старого
 // axios.interceptors.response.use(
 //   function (response) {
 //     return response

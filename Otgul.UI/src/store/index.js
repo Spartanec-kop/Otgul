@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import router from '../router/index'
 import login from './modules/login'
 import modal from './modules/modal'
+import mainMenu from './modules/mainMenu'
+import users from './modules/users'
 
 Vue.use(Vuex)
 
@@ -16,7 +18,7 @@ export default new Vuex.Store({
   actions: {
     navigate ({ dispatch }, content) {
       dispatch('modal/closeModal')
-      router.push({ path: content })
+      router.push({ name: content })
     },
     setActiveContent ({ commit }, content) {
       commit('SET_ACTIVE_CONTENT', content)
@@ -24,6 +26,8 @@ export default new Vuex.Store({
   },
   modules: {
     login,
-    modal
+    modal,
+    mainMenu,
+    users
   }
 })

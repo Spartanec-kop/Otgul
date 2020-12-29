@@ -8,7 +8,27 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: 'about' */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: 'login' */ '../views/Login.vue')
+  },
+  {
+    path: '/otgul',
+    name: 'otgul',
+    component: () => import(/* webpackChunkName: 'otgul' */ '../views/Otgul.vue')
+  },
+  {
+    path: '/employees',
+    name: 'employees',
+    component: () => import(/* webpackChunkName: 'employees' */ '../views/Employees.vue')
+  },
+  {
+    path: '/settings/users',
+    name: 'users',
+    component: () => import(/* webpackChunkName: 'users' */ '../views/Users.vue')
+  },
+  {
+    path: '/settings/journals',
+    name: 'journals',
+    component: () => import(/* webpackChunkName: 'journals' */ '../views/Journals.vue')
   }
 ]
 
@@ -38,7 +58,7 @@ router.beforeEach((to, from, next) => {
         next('/login')
       } else {
         if (to.path === '/') {
-          next('/student')
+          next('/otgul')
         } else {
           next()
         }
@@ -48,7 +68,7 @@ router.beforeEach((to, from, next) => {
     isAuthentificated()
       .then(result => {
         if (result) {
-          next('/student')
+          next('/otgul')
         } else {
           next()
         }
