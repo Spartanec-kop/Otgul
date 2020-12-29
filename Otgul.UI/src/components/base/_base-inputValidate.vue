@@ -3,6 +3,7 @@
     :class="[firstClass, {'input__error':isInvalid}]")
     input.valid-input(
       :value="value"
+      :type="type"
       @input="$emit('input', $event.target.value)"
       )
     .input-tooltip(:class="{'showed':isInvalid}") {{toolTipText}}
@@ -10,13 +11,14 @@
 <script>
 export default {
   name: 'BaseInputValidate',
-  props: ['value', 'firstClass', 'isInvalid', 'toolTipText']
+  props: ['value', 'firstClass', 'isInvalid', 'toolTipText', 'type']
 }
 </script>
 <style lang="scss" scoped>
 .valid-input {
   width: 100%;
   height: 100%;
+  padding-left: 15px;
   box-shadow: 0px 8px 8px rgba(0, 75, 130, 0.14);
   border-radius: 15px;
   font-size: 24px;

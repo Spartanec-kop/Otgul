@@ -24,12 +24,12 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import ModalLogout from './ModalLogout'
-import StudentCreate from './StudentCreate'
+import CreateUser from './CreateUser'
 export default {
   name: 'ModalWindow',
   components: {
     ModalLogout,
-    StudentCreate
+    CreateUser
   },
   computed: {
     ...mapState('modal', {

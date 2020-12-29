@@ -36,5 +36,6 @@ export default {
 .checkbox-icon {
   height: 9px;
   width: 12px;
+  fill: #EB4B13;
 }
 </style>
