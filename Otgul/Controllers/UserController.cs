@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Otgul.Api.ViewModel;
 using Otgul.Models;
 using Otgul.Services.Interfaces;
 
@@ -17,7 +18,7 @@ namespace Otgul.Api.Controllers
     [Route("api/[controller]")]
     [Authorize]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : Controller
     {
         private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
@@ -42,9 +43,22 @@ namespace Otgul.Api.Controllers
 
         // GET: api/User/all
         [HttpGet("all")]
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<JsonResult> GetUsers()
         {
-            return _userService.GetActiveUser();
+            IEnumerable<User> users = _userService.GetActiveUser();
+            IEnumerable<ViewUser> viewUsers = users.Select(u => new ViewUser
+            {
+                id = u.Id,
+                login = u.Login,
+                firstName = u.FirstName,
+                lastName = u.LastName,
+                middleName = u.MiddleName,
+                role = u.Role.Name,
+                otdel = u.Otdel,
+                department = u.Department,
+                rights = u.UserRights.Select(s => new ViewRight { Id = s.Right.Id, Name = s.Right.Name }).ToList()
+            });
+            return Json(viewUsers);
         }
 
         // GET: api/User
@@ -57,16 +71,19 @@ namespace Otgul.Api.Controllers
                 List<Claim> claims = identity.Claims.ToList();
 
                 User user = _userService.GetUserFromLogin(claims[0].Value);
-                var qwer = new {
+                var viewUser = new ViewUser
+                {
                     id = user.Id,
                     login = user.Login,
                     firstName = user.FirstName,
                     lastName = user.LastName,
                     middleName = user.MiddleName,
                     role = user.Role.Name,
-                    rights = user.UserRights.Select(s => s.Right.Name).ToList()
+                    otdel = user.Otdel,
+                    department = user.Department,
+                    rights = user.UserRights.Select(s => new ViewRight{ Id = s.Right.Id, Name = s.Right.Name }).ToList()
                 };
-                return qwer;
+                return viewUser;
             }
             else
             {
