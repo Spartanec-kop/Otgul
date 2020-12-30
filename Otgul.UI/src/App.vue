@@ -48,7 +48,7 @@ ul {
   padding: 0px;
   margin: 0px;
 }
-input {
+input, select, textarea {
   background: #FFFFFF;
   border: 1px solid #C0C0C0;
   box-sizing: border-box;

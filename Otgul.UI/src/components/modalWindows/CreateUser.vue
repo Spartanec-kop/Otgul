@@ -31,21 +31,46 @@
         .user-input-title
           span Логин:
         .user-input-input
-          input.user-nick-name(
+          input.user-login(
             type="text"
             v-model="login"
           )
       .user-input
         .user-input-title
+          span Отдел:
+        .user-input-select
+          select.user-otdel(
+            v-model="otdel"
+          )
+            option(
+              v-for="otdel in otdels"
+              :value="otdel"
+            ) {{otdel.nameOtdela}}
+      .user-input
+        .user-input-title
+          span Департамент:
+        .user-input-select
+          select.user-department(
+            v-model="department"
+          )
+            option(
+              v-for="department in departments"
+              :value="department"
+            ) {{department.name}}
+      .user-input
+        .user-input-title
           span Роль:
-        .user-input-input
-          input.user-role(
-            type="text"
+        .user-input-select
+          select.user-role(
             v-model="role"
           )
+            option(
+              v-for="role in roles"
+              :value="role"
+            ) {{role.name}}
   .battons
     .button-logout(
-      @click="createUser({ name, lastName, middleName, nickName, sex})"
+      @click="createUser({ firstName, lastName, middleName, login, role, otdel, department})"
     )
       BaseButton(
         type="blue"
@@ -70,21 +95,40 @@ export default {
       lastName: '',
       middleName: '',
       login: '',
-      role: ''
+      role: {},
+      otdel: {},
+      department: {}
     }
   },
   computed: {
-    ...mapState('group', {
-      groups: state => state.groups
+    ...mapState('role', {
+      roles: state => state.roles
+    }),
+    ...mapState('otdel', {
+      otdels: state => state.otdels
+    }),
+    ...mapState('department', {
+      departments: state => state.departments
     })
   },
   methods: {
     ...mapActions('users', ['createUser']),
-    ...mapActions('modal', ['closeModal'])
+    ...mapActions('modal', ['closeModal']),
+    ...mapActions('role', ['fetchRoles']),
+    ...mapActions('otdel', ['fetchOtdels']),
+    ...mapActions('department', ['fetchDepartments'])
+  },
+  mounted () {
+    this.fetchRoles()
+    this.fetchOtdels()
+    this.fetchDepartments()
   }
 }
 </script>
 <style lang="scss" scoped>
+select {
+  width: 95%;
+}
 .craate-user-wrapper{
   width: 529px;
   height: 341px;
@@ -111,7 +155,8 @@ export default {
   justify-content: space-around;
 }
 .user-input-title {
-  padding-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .craate-user-body {
   display: grid;
@@ -125,10 +170,8 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.user-input-input-sex {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+.user-input-select {
+  width: 100%;
 }
 input[type="radio"] {
   height: 20px;

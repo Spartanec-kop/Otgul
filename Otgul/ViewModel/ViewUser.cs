@@ -8,20 +8,19 @@ namespace Otgul.Api.ViewModel
 {
     public class ViewUser
     {
-        public int id { get; set; }
-        public string login { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string middleName { get; set; }
-        public string role { get; set; }
-        public Otdel otdel { get; set; }
-        public Department department { get; set; }
-        public IEnumerable<ViewRight> rights { get; set; }
-    }
-
-    public class ViewRight
-    {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public Int16 Tabel { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string Phone { get; set; }
+        public bool IsDeleted { get; set; }
+        public string WorkStatus { get; set; }
+        public ViewRole Role { get; set; }
+        public Otdel Otdel { get; set; }
+        public Department Department { get; set; }
+        public IEnumerable<ViewRight> Rights { get; set; }
     }
 }

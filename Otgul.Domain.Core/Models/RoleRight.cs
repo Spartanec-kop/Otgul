@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Otgul.Models
 {
-    public class RoleRights
+    public class RoleRight
     {
         public int RoleId { get; set; }
         public int RightId { get; set; }

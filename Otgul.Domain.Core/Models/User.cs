@@ -10,13 +10,9 @@ namespace Otgul.Models
         public int Id { get; set; }
         public Int16 Tabel { get; set; }
         public string FirstName { get; set; }
-        public string WorkStatus { get; set; }
-        public int OtdelId { get; set; }
-        
+        public string WorkStatus { get; set; }      
         [ForeignKey("otdelId")]
-        public Otdel Otdel { get; set; }
-        public int DepartmentId { get; set; }
-        
+        public Otdel Otdel { get; set; }   
         [ForeignKey("departmentId")]
         public Department Department { get; set; }
         public string Phone { get; set; }
@@ -24,16 +20,13 @@ namespace Otgul.Models
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public string Login { get; set; }
-        public string Password { get; set; }
-        public int RoleId { get; set; }
-        
+        public string Password { get; set; }   
         [ForeignKey("roleId")]
         public Role Role { get; set; }
-        public List<UserRights> UserRights { get; set; }
-
+        public List<UserRight> UserRights { get; set; }
         public User()
         {
-            UserRights = new List<UserRights>();
+            UserRights = new List<UserRight>();
             IsDeleted = false;
         } 
     }

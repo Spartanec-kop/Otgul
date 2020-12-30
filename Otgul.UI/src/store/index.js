@@ -5,6 +5,9 @@ import login from './modules/login'
 import modal from './modules/modal'
 import mainMenu from './modules/mainMenu'
 import users from './modules/users'
+import role from './modules/role'
+import otdel from './modules/otdel'
+import department from './modules/department'
 
 Vue.use(Vuex)
 
@@ -28,6 +31,9 @@ export default new Vuex.Store({
     login,
     modal,
     mainMenu,
-    users
+    users,
+    role,
+    otdel,
+    department
   }
 })

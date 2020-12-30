@@ -8,13 +8,16 @@ namespace Otgul.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<UserRights> UserRights { get; set; }
-        public List<RoleRights> RoleRights { get; set; }
 
+        // убрал обравтные ссылки, посмотрим что получится
+        //public List<UserRights> UserRights { get; set; }
+        //public List<RoleRights> RoleRights { get; set; }
+        /*
         public Right()
         {
             UserRights = new List<UserRights>();
             RoleRights = new List<RoleRights>();
         }
+        */
     }
 }

@@ -43,7 +43,7 @@ namespace Otgul.Services.Services
             return _userRepository.GetId(userId).Role;
         }
 
-        public IEnumerable<UserRights> GetUserRightsFromId(int userId)
+        public IEnumerable<UserRight> GetUserRightsFromId(int userId)
         {
             return _userRepository.GetId(userId).UserRights;
         }
@@ -54,6 +54,7 @@ namespace Otgul.Services.Services
             {
                 user.IsDeleted = true;
                 _userRepository.Update(user);
+                _userRepository.Save();
             }
         }
         public User GetUserFromLogoPass(string login, string password)
@@ -71,6 +72,7 @@ namespace Otgul.Services.Services
         public void UpdateUser(User user)
         {
             _userRepository.Update(user);
+            _userRepository.Save();
         }
     }
 }

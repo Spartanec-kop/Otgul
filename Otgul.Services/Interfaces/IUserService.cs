@@ -12,7 +12,7 @@ namespace Otgul.Services.Interfaces
         User GetUserFromId(int userId);
         User GetUserFromLogin(string login);
         Role GetUserRoleFromId(int userId);
-        IEnumerable<UserRights> GetUserRightsFromId(int userId);
+        IEnumerable<UserRight> GetUserRightsFromId(int userId);
         void UpdateUser(User user);
         void RemoveUser(int userId);
         IEnumerable<User> GetActiveUser();

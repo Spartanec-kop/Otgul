@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Otgul.Api.ViewModel;
 using Otgul.Models;
 using Otgul.Services.Interfaces;
+using Otgul.Api;
 
 namespace Otgul.Api.Controllers
 {
@@ -22,9 +23,11 @@ namespace Otgul.Api.Controllers
     {
         private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
+        private readonly Mapper _mapper;
 
-        public UserController(ITokenService tokenService, IUserService userService)
+        public UserController(Mapper mapper, ITokenService tokenService, IUserService userService)
         {
+            _mapper = mapper;
             _tokenService = tokenService;
             _userService = userService;
         }
@@ -46,19 +49,7 @@ namespace Otgul.Api.Controllers
         public async Task<JsonResult> GetUsers()
         {
             IEnumerable<User> users = _userService.GetActiveUser();
-            IEnumerable<ViewUser> viewUsers = users.Select(u => new ViewUser
-            {
-                id = u.Id,
-                login = u.Login,
-                firstName = u.FirstName,
-                lastName = u.LastName,
-                middleName = u.MiddleName,
-                role = u.Role.Name,
-                otdel = u.Otdel,
-                department = u.Department,
-                rights = u.UserRights.Select(s => new ViewRight { Id = s.Right.Id, Name = s.Right.Name }).ToList()
-            });
-            return Json(viewUsers);
+            return Json(users.Select(u => _mapper.Map(u)));
         }
 
         // GET: api/User
@@ -71,19 +62,7 @@ namespace Otgul.Api.Controllers
                 List<Claim> claims = identity.Claims.ToList();
 
                 User user = _userService.GetUserFromLogin(claims[0].Value);
-                var viewUser = new ViewUser
-                {
-                    id = user.Id,
-                    login = user.Login,
-                    firstName = user.FirstName,
-                    lastName = user.LastName,
-                    middleName = user.MiddleName,
-                    role = user.Role.Name,
-                    otdel = user.Otdel,
-                    department = user.Department,
-                    rights = user.UserRights.Select(s => new ViewRight{ Id = s.Right.Id, Name = s.Right.Name }).ToList()
-                };
-                return viewUser;
+                return _mapper.Map(user);
             }
             else
             {
@@ -108,14 +87,55 @@ namespace Otgul.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<ViewUser>> PostUser([FromBody] ViewUser viewUser)
         {
-            User tmpUser = _userService.GetUserFromLogin(user.Login);
+            User tmpUser = _userService.GetUserFromLogin(viewUser.Login);
             if (tmpUser == null)
             {
-                _userService.CreateUser(user);
+                viewUser.WorkStatus = "workStatus1";
+                viewUser.Password = "123";
+                tmpUser = _mapper.Map(viewUser);
+               
+                _userService.CreateUser(tmpUser);
+                User user = _userService.GetUserFromLogin(viewUser.Login);
+                return _mapper.Map(user);
+                //return _mapper.Map(_userService.GetUserFromLogin(viewUser.Login));
             }
-            return _userService.GetUserFromLogin(user.Login);
+            else
+            {
+                return BadRequest("Пользователь с таким логином уже существует.");
+            }
+            
+        }
+
+        [HttpPut]
+        public ActionResult<ViewUser> PutUser ([FromBody] User user)
+        {
+            User tmpUser = _userService.GetUserFromLogin(user.Login);
+            if (tmpUser != null)
+            {
+                _userService.UpdateUser(user);
+                return _mapper.Map(_userService.GetUserFromLogin(user.Login));
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult deleteUser (int userId)
+        {
+            User tmpUser = _userService.GetUserFromId(userId);
+            if (tmpUser != null)
+            {
+                _userService.RemoveUser(userId);
+                return Ok();
+            } 
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

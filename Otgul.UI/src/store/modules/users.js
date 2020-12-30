@@ -6,7 +6,8 @@ export default {
     users: []
   },
   mutations: {
-    SET_USERS: (state, users) => (state.users = users)
+    SET_USERS: (state, users) => (state.users = users),
+    ADD_USER: (state, user) => (state.users.push(user))
   },
   actions: {
     fetchUsers ({ commit }) {
@@ -21,6 +22,14 @@ export default {
           } else {
             console.log(error)
           }
+        })
+    },
+    createUser ({ commit }, user) {
+      user.rights = user.role.roleRights
+      axios
+        .post('/api/User', user)
+        .then(response => {
+          commit('ADD_USER', response.data)
         })
     }
   },

@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Otgul.Api;
 using Otgul.DataBase;
 using Otgul.DataBase.Repository;
 using Otgul.DataBase.Repository.Repository;
@@ -20,7 +21,6 @@ using Otgul.Repository.Interface;
 using Otgul.Services.Interfaces;
 using Otgul.Services.Security;
 using Otgul.Services.Services;
-using StudentData.Api;
 
 namespace Otgul
 {
@@ -40,8 +40,17 @@ namespace Otgul
                 opt.UseSqlServer(Configuration.GetConnectionString(nameof(OtgulDBContext))));
 
             services.AddTransient<IDataBaseRepository<User>, UserRepository>();
+            services.AddTransient<IDataBaseRepository<Role>, RoleRepository>();
+            services.AddTransient<IDataBaseRepository<Otdel>, OtdelRepository>();
+            services.AddTransient<IDataBaseRepository<Department>, DepartmentRepository>();
+            services.AddTransient<IDataBaseRepository<Right>, RightRepository>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IOtdelService, OtdelService>();
+            services.AddTransient<IRightService, RightService>();
+            services.AddTransient<IDepartmentService, DepartmentService>();
             services.AddTransient<ITokenService, TokenService>();
+            services.AddTransient<Mapper, Mapper>();
             services.AddControllers();          
             // added CORS
             services.AddCors();

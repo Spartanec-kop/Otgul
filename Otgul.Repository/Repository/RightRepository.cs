@@ -10,12 +10,12 @@ using System.Text;
 
 namespace Otgul.DataBase.Repository.Repository
 {
-    public class RightsRepository : IDataBaseRepository<Right>
+    public class RightRepository : IDataBaseRepository<Right>
     {
         private readonly OtgulDBContext db;
         private bool disposed = false;
 
-        public RightsRepository(OtgulDBContext context)
+        public RightRepository(OtgulDBContext context)
         {
             this.db = context;
         }

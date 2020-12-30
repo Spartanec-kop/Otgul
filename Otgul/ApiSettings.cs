@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace StudentData.Api
+namespace Otgul.Api
 {
     public class ApiSettings
     {

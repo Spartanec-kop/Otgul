@@ -35,7 +35,7 @@ namespace Otgul.DataBase.Repository.Repository
                 
         public IEnumerable<Role> Find(Expression<Func<Role, bool>> predicate)
         {
-            IQueryable<Role> query = db.Roles.Where(predicate);
+            IQueryable<Role> query = db.Roles.Include(s => s.RoleRights).ThenInclude(f => f.Right).Where(predicate);
             return query;
         }
 

@@ -7,9 +7,10 @@ namespace Otgul.Services.Interfaces
 {
     public interface IRoleService
     {
-        void CreateNewRole(IRoleService role);
+        void CreateRole(Role role);
         IEnumerable<Role> GetAllActiveRole();
-        void EditRole(Role role);
+        Role GetRoleFromId(int roleId);
+        void UpdateRole(Role role);
         void RemoveRole(int roleId);
     }
 }
