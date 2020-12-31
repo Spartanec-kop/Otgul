@@ -8,6 +8,7 @@ import users from './modules/users'
 import role from './modules/role'
 import otdel from './modules/otdel'
 import department from './modules/department'
+import right from './modules/right'
 
 Vue.use(Vuex)
 
@@ -34,6 +35,7 @@ export default new Vuex.Store({
     users,
     role,
     otdel,
-    department
+    department,
+    right
   }
 })

@@ -92,14 +92,8 @@ namespace Otgul.Api.Controllers
             User tmpUser = _userService.GetUserFromLogin(viewUser.Login);
             if (tmpUser == null)
             {
-                viewUser.WorkStatus = "workStatus1";
-                viewUser.Password = "123";
-                tmpUser = _mapper.Map(viewUser);
-               
-                _userService.CreateUser(tmpUser);
-                User user = _userService.GetUserFromLogin(viewUser.Login);
-                return _mapper.Map(user);
-                //return _mapper.Map(_userService.GetUserFromLogin(viewUser.Login));
+                _userService.CreateUser(_mapper.Map(viewUser));
+                return _mapper.Map(_userService.GetUserFromLogin(viewUser.Login));
             }
             else
             {
