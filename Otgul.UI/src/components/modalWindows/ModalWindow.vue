@@ -25,11 +25,13 @@
 import { mapState, mapActions } from 'vuex'
 import ModalLogout from './ModalLogout'
 import CreateUser from './CreateUser'
+import RemoveUser from './RemoveUser'
 export default {
   name: 'ModalWindow',
   components: {
     ModalLogout,
-    CreateUser
+    CreateUser,
+    RemoveUser
   },
   computed: {
     ...mapState('modal', {

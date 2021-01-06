@@ -103,13 +103,13 @@ namespace Otgul.Api.Controllers
         }
 
         [HttpPut]
-        public ActionResult<ViewUser> PutUser ([FromBody] User user)
+        public ActionResult<ViewUser> PutUser ([FromBody] ViewUser viewUser)
         {
-            User tmpUser = _userService.GetUserFromLogin(user.Login);
+            User tmpUser = _userService.GetUserFromId(viewUser.Id);
             if (tmpUser != null)
             {
-                _userService.UpdateUser(user);
-                return _mapper.Map(_userService.GetUserFromLogin(user.Login));
+                _userService.UpdateUser(_mapper.Map(viewUser));
+                return _mapper.Map(_userService.GetUserFromLogin(viewUser.Login));
             }
             else
             {
@@ -118,12 +118,12 @@ namespace Otgul.Api.Controllers
         }
 
         [HttpDelete]
-        public ActionResult deleteUser (int userId)
+        public ActionResult deleteUser (int Id)
         {
-            User tmpUser = _userService.GetUserFromId(userId);
+            User tmpUser = _userService.GetUserFromId(Id);
             if (tmpUser != null)
             {
-                _userService.RemoveUser(userId);
+                _userService.RemoveUser(Id);
                 return Ok();
             } 
             else

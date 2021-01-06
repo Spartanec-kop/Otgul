@@ -70,5 +70,18 @@ input, select, textarea {
   line-height: 14px;
   // color: #969696;
 }
+.add-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #969696;
+
+  cursor: pointer;
+}
 
 </style>

@@ -1,11 +1,11 @@
 <template lang="pug">
-.craate-user-wrapper
+.create-user-wrapper
   .body-wrapper
-    .craate-user-title Добавить нового пользователя
-    .craate-user-body
+    .create-user-title Добавить нового пользователя
+    .create-user-body
       .user-input
         .user-input-title
-          span Логин:
+          span Логин*:
         .user-input-input
           input.user-login(
             type="text"
@@ -13,7 +13,7 @@
           )
       .user-input
         .user-input-title
-          span Пароль:
+          span Пароль*:
         .user-input-input
           input.user-login(
             type="password"
@@ -21,7 +21,7 @@
           )
       .user-input
         .user-input-title
-          span Роль:
+          span Роль*:
         .user-input-select
           select.user-role(
             v-model="role"
@@ -58,7 +58,7 @@
 
       .user-input
         .user-input-title
-          span Отдел:
+          span Отдел*:
         .user-input-select
           select.user-otdel(
             v-model="otdel"
@@ -69,7 +69,7 @@
             ) {{otdel.nameOtdela}}
       .user-input
         .user-input-title
-          span Департамент:
+          span Департамент*:
         .user-input-select
           select.user-department(
             v-model="department"
@@ -87,7 +87,7 @@
       )
   .battons
     .button-logout(
-      @click="createUser({ firstName, lastName, middleName, login, role, otdel, department})"
+      @click="doAction()"
     )
       BaseButton(
         type="blue"
@@ -110,15 +110,15 @@ export default {
   components: { Rights },
   data () {
     return {
-      firstName: '',
-      lastName: '',
-      middleName: '',
-      login: '',
-      password: '',
-      role: {},
-      otdel: {},
-      department: {},
-      userRights: []
+      inFirstName: null,
+      inLastName: null,
+      inMiddleName: null,
+      inLogin: null,
+      inPassword: null,
+      inRole: null,
+      inOtdel: null,
+      inDepartment: null,
+      inUserRights: []
     }
   },
   computed: {
@@ -133,10 +133,101 @@ export default {
     }),
     ...mapState('right', {
       rights: state => state.rights
-    })
+    }),
+    ...mapState('modal', {
+      user: state => state.modalContent
+    }),
+    firstName: {
+      get () {
+        return this.inFirstName === null && this.user ? this.user.firstName : this.inFirstName
+      },
+      set (value) {
+        this.inFirstName = value
+      }
+    },
+    lastName: {
+      get () {
+        return this.inLastName === null && this.user ? this.user.lastName : this.inLastName
+      },
+      set (value) {
+        this.inLastName = value
+      }
+    },
+    middleName: {
+      get () {
+        return this.inMiddleName === null && this.user ? this.user.middleName : this.inMiddleName
+      },
+      set (value) {
+        this.inMiddleName = value
+      }
+    },
+    login: {
+      get () {
+        return this.inLogin === null && this.user ? this.user.login : this.inLogin
+      },
+      set (value) {
+        this.inLogin = value
+      }
+    },
+    password: {
+      get () {
+        return this.inPassword === null && this.user ? this.user.password : this.inPassword
+      },
+      set (value) {
+        this.inPassword = value
+      }
+    },
+    role: {
+      get () {
+        return !this.inRole && this.user ? this.user.role : this.inRole
+      },
+      set (value) {
+        this.inRole = value
+      }
+    },
+    otdel: {
+      get () {
+        return !this.inOtdel && this.user ? this.user.otdel : this.inOtdel
+      },
+      set (value) {
+        this.inOtdel = value
+      }
+    },
+    department: {
+      get () {
+        return !this.inDepartment && this.user ? this.user.department : this.inDepartment
+      },
+      set (value) {
+        this.inDepartment = value
+      }
+    },
+    userRights: {
+      get () {
+        return this.inUserRights.length === 0 && this.user ? this.user.userRights : this.inUserRights
+      },
+      set (value) {
+        this.inUserRights = value
+      }
+    }
+  },
+  watch: {
+    user: {
+      handler (newVal, oldVal) {
+        this.firstName = newVal.firstName
+        this.lastName = newVal.lastName
+        this.middleName = newVal.middleName
+        this.login = newVal.login
+        this.password = newVal.password
+        this.role = newVal.role
+        this.otdel = newVal.otdel
+        this.department = newVal.department
+        this.userRights = newVal.userRights
+      },
+      deep: true
+    }
   },
   methods: {
-    ...mapActions('users', ['createUser']),
+    ...mapActions('users', ['createUser', 'updateUser']),
     ...mapActions('modal', ['closeModal']),
     ...mapActions('role', ['fetchRoles']),
     ...mapActions('otdel', ['fetchOtdels']),
@@ -144,6 +235,34 @@ export default {
     ...mapActions('right', ['fetchRights']),
     changeRole () {
       this.userRights = [...this.role.roleRights]
+    },
+    doAction () {
+      if (!this.user) {
+        this.createUser({
+          firstName: this.firstName,
+          lastName: this.lastName,
+          middleName: this.middleName,
+          login: this.login,
+          password: this.password,
+          role: this.role,
+          otdel: this.otdel,
+          department: this.department,
+          userRights: this.userRights
+        })
+      } else {
+        this.updateUser({
+          id: this.user.id,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          middleName: this.middleName,
+          login: this.login,
+          password: this.password,
+          role: this.role,
+          otdel: this.otdel,
+          department: this.department,
+          userRights: this.userRights
+        })
+      }
     }
   },
   mounted () {
@@ -158,19 +277,14 @@ export default {
 select {
   width: 100%;
 }
-.craate-user-wrapper{
-  // width: 529px;
-  // height: 341px;
-}
 .icon {
   text-align: center;
   padding-top: 55px;
 }
 .body-wrapper {
-  //width: 365px;
   margin: 0 auto;
 }
-.craate-user-title {
+.create-user-title {
   padding: 20px 0px;
   font-family: Roboto;
   font-style: normal;
@@ -187,7 +301,7 @@ select {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.craate-user-body {
+.create-user-body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 10px;
@@ -196,7 +310,7 @@ select {
 .user-rights {
   padding: 5px 0px;
 }
-.craate-user-wrapper {
+.create-user-wrapper {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -204,13 +318,6 @@ select {
 }
 .user-input-select {
   width: 100%;
-}
-input[type="radio"] {
-  height: 20px;
-}
-.sex-radio {
-  display: flex;
-  align-items: center;
 }
 .group-select {
   width: 100%;

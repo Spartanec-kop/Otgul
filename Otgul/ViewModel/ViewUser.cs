@@ -21,6 +21,6 @@ namespace Otgul.Api.ViewModel
         public ViewRole Role { get; set; }
         public Otdel Otdel { get; set; }
         public Department Department { get; set; }
-        public IEnumerable<ViewRight> Rights { get; set; }
+        public IEnumerable<ViewRight> UserRights { get; set; }
     }
 }

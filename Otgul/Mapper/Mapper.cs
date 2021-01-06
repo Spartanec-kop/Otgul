@@ -28,7 +28,7 @@ namespace Otgul.Api
                 Tabel = user.Tabel,
                 Login = user.Login,
                 Phone = user.Phone,
-                Password = null,
+                Password = user.Password,
                 WorkStatus = user.WorkStatus,
                 FirstName = user.FirstName,
                 IsDeleted = user.IsDeleted,
@@ -37,7 +37,7 @@ namespace Otgul.Api
                 Role = Map(user.Role),
                 Otdel = user.Otdel,
                 Department = user.Department,
-                Rights = user.UserRights.Select(Map).ToList()
+                UserRights = user.UserRights.Select(Map).ToList()
             };
         }
 
@@ -60,7 +60,7 @@ namespace Otgul.Api
                 IsDeleted = viewUser.IsDeleted,
             };
 
-            foreach (ViewRight right in viewUser.Rights)
+            foreach (ViewRight right in viewUser.UserRights)
             {
                 Right dbRight = _rightService.GetRightFromId(right.Id);
                 UserRight userRight = new UserRight

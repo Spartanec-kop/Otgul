@@ -1,13 +1,13 @@
 <template lang="pug">
   .users-wrapper
     .button-set
-      .add-user(
-        @click.stop="showModal({ component: 'CreateUser', showClose: false })"
+    .add-item(
+      @click.stop="showModal({ component: 'CreateUser', showClose: false })"
+    )
+      img.plus(
+        src="../../public/img/icons/plus.svg"
       )
-         BaseButton(
-          type="red"
-          label="Добавить пользователя"
-        )
+      .add-item-title Добавить пользователя
     .users-list
       FilteredTable(
         :tableData="users"

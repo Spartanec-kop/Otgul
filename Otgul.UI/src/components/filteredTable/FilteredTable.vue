@@ -66,24 +66,47 @@
               @setFilter="setFilter"
               @setSorting="setSorting"
             )
+      th
+        .column-header
+          .column-header-title Действия
+          .column-header-ManageIpTableFilters
     tbody
       tr(
         v-for="row in filteredSortedData"
         :class="{'selected-row': checkRow(checkedItems, row)}"
         :key="row.id"
+        @click="checkItem(row)"
       )
         td.checkbox-cell
           BaseCheckbox(
             :checked="checkRow(checkedItems, row)"
-            @change="checkItem({target:$event, item: row })"
           )
         td {{row.login}}
         td {{row.lastName}}
         td {{row.firstName}}
         td {{row.middleName}}
-        td {{row.role}}
+        td {{row.role.name}}
+        td.row-button-set-wrapper
+          .row-button-set
+            .row-button-edit.row-button-set-item(
+              title="Редактировать"
+              @click.stop="showModal({ component: 'CreateUser', showClose: false, modalContent: row })"
+            )
+              svg.row-button-edit-svg(
+              )
+                  use(
+                    v-bind="{'xlink:href' : require('../../../public/img/sprite.svg') + '#edit'}"
+                  )
+            .row-button-remove.row-button-set-item(
+              title="Удалить"
+              @click.stop="showModal({ component: 'RemoveUser', showClose: false, modalContent: row })"
+            )
+              img.array-item-remove-icon(
+                src="../../../public/img/icons/remove-item.svg"
+              )
 </template>
 <script>
+import { mapActions } from 'vuex'
 import FilteredTableFilters from './FilteredTableFilters'
 export default {
   name: 'FilteredTable',
@@ -141,7 +164,7 @@ export default {
     },
     filtersData () {
       const data = {}
-      this.filteredSortedData.forEach(item => {
+      this.innerData.forEach(item => {
         for (const key in item) {
           if (data[key]) {
             if (data[key].indexOf(item[key]) + 1) {
@@ -167,14 +190,15 @@ export default {
     }
   },
   methods: {
+    ...mapActions('modal', ['showModal']),
     checkRow (checkedItems, address) {
       return checkedItems.indexOf(address) + 1 > 0
     },
-    checkItem (data) {
-      if (data.target) {
-        this.checkedItems.push(data.item)
+    checkItem (item) {
+      const id = this.checkedItems.indexOf(item)
+      if (id < 0) {
+        this.checkedItems.push(item)
       } else {
-        const id = this.checkedItems.indexOf(data.item)
         this.checkedItems.splice(id, 1)
       }
     },
@@ -222,6 +246,9 @@ th {
 }
 tr {
   height: 30px;
+  &:hover {
+    background: #FFECD6;
+  }
 }
 td {
   padding: 0px 35px;
@@ -239,7 +266,24 @@ td {
 .selected-row {
   background: #FFECD6;
 }
-.subnet-mask {
-  color: #EB4B13;
+.row-button-set-wrapper {
+  width: 80px;
+}
+.row-button-set {
+  display: flex;
+  align-items: center;
+}
+.row-button-set-item {
+  cursor: pointer;
+  margin: 0px 5px;
+}
+.row-button-edit-svg {
+  width: 23px;
+  height: 23px;
+  fill: #ff8900;
+}
+.row-button-remove {
+  width: 23px;
+  height: 25px;
 }
 </style>

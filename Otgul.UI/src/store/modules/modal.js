@@ -6,13 +6,15 @@ export default {
   state: {
     bodyComponent: '',
     showModal: false,
-    showCloseButton: false
+    showCloseButton: false,
+    modalContent: null
   },
   mutations: {
     SHOW_MODAL: (state, body) => {
       state.showModal = true
       state.bodyComponent = body.component
       state.showCloseButton = body.showClose
+      state.modalContent = body.modalContent
     },
     CLOSE_MODAL: (state) => {
       state.showModal = false
