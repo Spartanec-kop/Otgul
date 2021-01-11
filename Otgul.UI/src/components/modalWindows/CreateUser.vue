@@ -55,7 +55,15 @@
             type="text"
             v-model="middleName"
           )
-
+      .user-input
+        .user-input-title
+          span Телефон:
+        .user-input-input
+          input.user-phone(
+            type="tel"
+            pattern="((8|+7)[-s]?)?(?[0-9]{3})?[-s]?[0-9]{3}[-s]?[0-9]{2}[-s]?[0-9]{2}$"
+            v-model="phone"
+          )
       .user-input
         .user-input-title
           span Отдел*:
@@ -78,6 +86,14 @@
               v-for="department in departments"
               :value="department"
             ) {{department.name}}
+      .user-input
+        .user-input-title
+          span Табельный №:
+        .user-input-input
+          input.user-tabel(
+            type="number"
+            v-model="tabel"
+          )
     hr
     .user-rights
       .user-rights-label Права пользователя
@@ -118,6 +134,8 @@ export default {
       inRole: null,
       inOtdel: null,
       inDepartment: null,
+      inPhone: null,
+      inTabel: null,
       inUserRights: []
     }
   },
@@ -208,6 +226,22 @@ export default {
       set (value) {
         this.inUserRights = value
       }
+    },
+    phone: {
+      get () {
+        return this.inPhone === null && this.user ? this.user.phone : this.inPhone
+      },
+      set (value) {
+        this.inPhone = value
+      }
+    },
+    tabel: {
+      get () {
+        return this.inTabel === null && this.user ? this.user.tabel : this.inTabel
+      },
+      set (value) {
+        this.inTabel = value
+      }
     }
   },
   watch: {
@@ -222,6 +256,8 @@ export default {
         this.otdel = newVal.otdel
         this.department = newVal.department
         this.userRights = newVal.userRights
+        this.phone = newVal.phone
+        this.tabel = newVal.tabel
       },
       deep: true
     }
@@ -247,7 +283,9 @@ export default {
           role: this.role,
           otdel: this.otdel,
           department: this.department,
-          userRights: this.userRights
+          userRights: this.userRights,
+          phone: this.phone,
+          tabel: this.tabel
         })
       } else {
         this.updateUser({
@@ -260,7 +298,9 @@ export default {
           role: this.role,
           otdel: this.otdel,
           department: this.department,
-          userRights: this.userRights
+          userRights: this.userRights,
+          phone: this.phone,
+          tabel: this.tabel
         })
       }
     }
