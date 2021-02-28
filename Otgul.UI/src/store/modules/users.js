@@ -25,7 +25,11 @@ export default {
       axios
         .get('/api/User/all')
         .then(response => {
-          commit('SET_USERS', response.data)
+          const users = response.data.map(user => {
+            user.roleName = user.role.name
+            return user
+          })
+          commit('SET_USERS', users)
         })
         .catch(error => {
           if (error.response) {

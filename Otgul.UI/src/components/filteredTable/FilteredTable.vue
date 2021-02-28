@@ -6,69 +6,28 @@
         BaseCheckbox(
           v-model="selectAll"
         )
-      th
-        .column-header
-          .column-header-title Логин
-          .column-header-ManageIpTableFilters
+      th(
+      v-for="column in columns"
+      )
+        .column-header(
+          v-if="column.field"
+        )
+          .column-header-title {{column.name}}
+          .column-header-ManageIpTableFilters(
+            v-if="column.filtered"
+          )
             FilteredTableFilters(
               position="left"
-              :items="filtersData.login"
-              name="login"
+              :items="filtersData[column.field]"
+              :name="column.field"
               :sorting="sorting"
               @setFilter="setFilter"
               @setSorting="setSorting"
             )
-      th
-        .column-header
-          .column-header-title Фамилия
-          .column-header-ManageIpTableFilters
-            FilteredTableFilters(
-              position="right"
-              :items="filtersData.lastName"
-              name="lastName"
-              :sorting="sorting"
-              @setFilter="setFilter"
-              @setSorting="setSorting"
-            )
-      th
-        .column-header
-          .column-header-title Имя
-          .column-header-ManageIpTableFilters
-            FilteredTableFilters(
-              position="right"
-              :items="filtersData.firstName"
-              name="firstName"
-              :sorting="sorting"
-              @setFilter="setFilter"
-              @setSorting="setSorting"
-            )
-      th
-        .column-header
-          .column-header-title Отчество
-          .column-header-ManageIpTableFilters
-            FilteredTableFilters(
-              position="right"
-              :items="filtersData.middleName"
-              name="middleName"
-              :sorting="sorting"
-              @setFilter="setFilter"
-              @setSorting="setSorting"
-            )
-      th
-        .column-header
-          .column-header-title Роль
-          .column-header-ManageIpTableFilters
-            FilteredTableFilters(
-              position="right"
-              :items="filtersData.role"
-              name="role"
-              :sorting="sorting"
-              @setFilter="setFilter"
-              @setSorting="setSorting"
-            )
-      th
-        .column-header
-          .column-header-title Действия
+        .column-header(
+          v-if="column.type === 'action'"
+        )
+          .column-header-title {{column.name}}
           .column-header-ManageIpTableFilters
     tbody
       tr(
@@ -81,12 +40,14 @@
           BaseCheckbox(
             :checked="checkRow(checkedItems, row)"
           )
-        td {{row.login}}
-        td {{row.lastName}}
-        td {{row.firstName}}
-        td {{row.middleName}}
-        td {{row.role.name}}
-        td.row-button-set-wrapper
+        td(
+          v-for="column in columns"
+          v-if="column.field"
+        ) {{row[column.field]}}
+        td.row-button-set-wrapper(
+          v-for="column in columns"
+          v-if="column.type === 'action'"
+        )
           .row-button-set
             .row-button-edit.row-button-set-item(
               title="Редактировать"
@@ -112,56 +73,43 @@ export default {
   name: 'FilteredTable',
   components: { FilteredTableFilters },
   props: {
-    tableData: Array
+    tableData: Array,
+    columns: Array
   },
   data () {
     return {
       innerData: [],
       checkedItems: [],
-      filters: {
-        login: [],
-        firstName: [],
-        lastName: [],
-        middleName: [],
-        role: []
-      },
+      filters: {},
       sorting: {
         name: '',
         direction: 'asc'
-      }
+      },
+      filteredSortedData: {}
     }
   },
   watch: {
     tableData: {
-      handler () {
+      handler (newVal, oldVal) {
         this.innerData = JSON.parse(JSON.stringify(this.tableData))
+        this.setFilteredSortedData()
+      },
+      deep: true
+    },
+    filters: {
+      handler (newVal, oldVal) {
+        this.setFilteredSortedData()
+      },
+      deep: true
+    },
+    sorting: {
+      handler (newVal, oldVal) {
+        this.setFilteredSortedData()
       },
       deep: true
     }
   },
   computed: {
-    filteredSortedData () {
-      const newData = this.innerData.filter(item => {
-        return (this.filters.login.length === 0 || this.filters.login.indexOf(item.login) + 1) &&
-          (this.filters.firstName.length === 0 || this.filters.firstName.indexOf(item.firstName) + 1) &&
-          (this.filters.lastName.length === 0 || this.filters.lastName.indexOf(item.lastName) + 1) &&
-          (this.filters.middleName.length === 0 || this.filters.middleName.indexOf(item.middleName) + 1) &&
-          (this.filters.role.length === 0 || this.filters.role.indexOf(item.role) + 1)
-      })
-      if (this.sorting.name) {
-        newData.sort(function (a, b) {
-          var x = a[this.sorting.name].toLowerCase()
-          var y = b[this.sorting.name].toLowerCase()
-          if (x < y) return -1
-          if (x > y) return 1
-          return 0
-        })
-        if (this.sorting.direction === 'desc') {
-          newData.reverse()
-        }
-      }
-      return newData
-    },
     filtersData () {
       const data = {}
       this.innerData.forEach(item => {
@@ -191,6 +139,28 @@ export default {
   },
   methods: {
     ...mapActions('modal', ['showModal']),
+    setFilteredSortedData () {
+      const newData = this.innerData.filter(item => {
+        let result = true
+        for (const subItem in this.filters) {
+          if (!(this.filters[subItem].length === 0 || this.filters[subItem].indexOf(item[subItem]) + 1)) result = false
+        }
+        return result
+      })
+      if (this.sorting.name) {
+        newData.sort((a, b) => {
+          const x = a[this.sorting.name].toLowerCase()
+          const y = b[this.sorting.name].toLowerCase()
+          if (x < y) return -1
+          if (x > y) return 1
+          return 0
+        })
+        if (this.sorting.direction === 'desc') {
+          newData.reverse()
+        }
+      }
+      this.filteredSortedData = newData
+    },
     checkRow (checkedItems, address) {
       return checkedItems.indexOf(address) + 1 > 0
     },
@@ -211,11 +181,17 @@ export default {
     },
     setFilter (filter) {
       this.filters[filter.name] = filter.checkedFilter
+      this.filters = { ...this.filters }
       this.checkedItems = []
     },
     setSorting (sorting) {
       this.sorting = sorting
     }
+  },
+  created () {
+    this.columns.forEach(column => {
+      if (column.field) this.filters[column.field] = []
+    })
   }
 }
 </script>

@@ -11,6 +11,7 @@
     .users-list
       FilteredTable(
         :tableData="users"
+        :columns="columns"
       )
     .user-data-wrapper
 </template>
@@ -21,6 +22,41 @@ export default {
   name: 'Users',
   components: {
     FilteredTable
+  },
+  data () {
+    return {
+      columns: [
+        {
+          field: 'login',
+          name: 'Логин',
+          filtered: true
+        },
+        {
+          field: 'lastName',
+          name: 'Фамилия',
+          filtered: true
+        },
+        {
+          field: 'firstName',
+          name: 'Имя',
+          filtered: true
+        },
+        {
+          field: 'middleName',
+          name: 'Отчество',
+          filtered: true
+        },
+        {
+          field: 'roleName',
+          name: 'Роль',
+          filtered: true
+        },
+        {
+          name: 'Действия',
+          type: 'action'
+        }
+      ]
+    }
   },
   computed: {
     ...mapState('users', {

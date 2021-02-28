@@ -120,18 +120,11 @@ export default {
       this.$emit('setSorting', { name: this.name, direction })
     },
     closeFilter () {
-      console.log('closeFilter')
       if (this.opened) {
         this.opened = false
       }
     }
   }
-  // events: {
-  //   closeFilter: function (event) {
-  //     console.log('closeFilter')
-  //     this.opened = false
-  //   }
-  // }
 }
 </script>
 <style lang="scss" scoped>
@@ -187,7 +180,7 @@ export default {
 .sorting-a-z, .sorting-z-a {
   display: flex;
   cursor: pointer;
-  padding-bottom: 14px;
+  padding: 7px 0;
 }
 .search-input {
   position: relative;

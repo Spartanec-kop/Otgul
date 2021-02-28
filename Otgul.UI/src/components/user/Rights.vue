@@ -108,5 +108,6 @@ export default {
 select.form-control[multiple]{
   height: max-content;
   max-height: 200px;
+  padding: 5px;
 }
 </style>
