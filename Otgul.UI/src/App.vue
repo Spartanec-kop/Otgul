@@ -41,12 +41,12 @@ export default {
 
 /* End fonts */
 body {
-  margin: 0px;
+  margin: 0;
 }
 ul {
   list-style-type: none;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 input, select, textarea {
   background: #FFFFFF;
@@ -68,19 +68,18 @@ input, select, textarea {
   font-weight: normal;
   font-size: 16px;
   line-height: 14px;
-  // color: #969696;
+  color: #000584;
 }
 .add-item {
   display: flex;
   align-items: center;
-  margin: 10px 0px;
-  font-family: Roboto;
+  margin: 10px 0;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
   color: #969696;
-
+  width: max-content;
   cursor: pointer;
 }
 

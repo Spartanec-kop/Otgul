@@ -133,7 +133,7 @@ export default {
   },
   watch: {
     tableData: {
-      handler (newVal, oldVal) {
+      handler () {
         this.innerData = JSON.parse(JSON.stringify(this.tableData))
       },
       deep: true
@@ -223,7 +223,7 @@ export default {
 .filtered-table-wrapper {
   width: 100%;
   height: 100%;
-  min-height: 300px;
+  min-height: 400px;
   overflow-y: auto;
 }
 .select-all {

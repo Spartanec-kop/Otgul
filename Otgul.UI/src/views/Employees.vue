@@ -1,9 +1,14 @@
 <template lang="pug">
-  div Сотрудники
+  .employees-wrapper
+    FilterSet
+    EmployeesToggledTable
 </template>
 <script>
+import FilterSet from '../components/employees/FilterSet'
+import EmployeesToggledTable from '../components/employees/EmployeesToggledTable'
 export default {
-  name: 'Employees'
+  name: 'Employees',
+  components: { FilterSet, EmployeesToggledTable }
 }
 </script>
 <style lang="scss" scoped>
