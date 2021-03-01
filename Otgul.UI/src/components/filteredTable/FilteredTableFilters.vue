@@ -38,6 +38,7 @@
       .search-input
         input.search-input-input(
           type="text"
+          v-model="filterToFilters"
         )
         .search-input-button
           svg.search-input-button-svg
@@ -53,7 +54,7 @@
           )
           .show-all-title показать все
         li.filters-item(
-          v-for="item, id in items"
+          v-for="(item, id) in filteredFilters"
         )
           BaseCheckbox(
             :checked="checkRow(checkedFilter, item)"
@@ -63,7 +64,7 @@
 </template>
 <script>
 export default {
-  name: 'ManageIpTableFilters',
+  name: 'FilteredTableFilters',
   props: {
     position: String,
     name: String,
@@ -73,10 +74,37 @@ export default {
   data () {
     return {
       opened: false,
-      checkedFilter: []
+      checkedFilter: [],
+      filterToFilters: ''
     }
   },
   computed: {
+    filteredFilters () {
+      return this.items ? this.items.filter(item => {
+        return !this.filterToFilters || item.toLowerCase().indexOf(this.filterToFilters.toLowerCase()) + 1 || this.checkedFilter.indexOf(item) + 1
+      }).sort((a, b) => {
+        if (this.checkedFilter.indexOf(a) + 1 && this.checkedFilter.indexOf(b) + 1) {
+          if (a > b) {
+            return 1
+          } else {
+            return -1
+          }
+        }
+        if (this.checkedFilter.indexOf(a) + 1 && !this.checkedFilter.indexOf(b) + 1) {
+          return -1
+        }
+        if (!this.checkedFilter.indexOf(a) + 1 && this.checkedFilter.indexOf(b) + 1) {
+          return 1
+        }
+        if (!this.checkedFilter.indexOf(a) + 1 && !this.checkedFilter.indexOf(b) + 1) {
+          if (a > b) {
+            return 1
+          } else {
+            return -1
+          }
+        }
+      }) : []
+    },
     showAll: {
       get () {
         return this.checkedFilter.length === 0
