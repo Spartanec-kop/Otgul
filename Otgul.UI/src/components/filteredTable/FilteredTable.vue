@@ -10,7 +10,7 @@
       v-for="column in columns"
       )
         .column-header(
-          v-if="column.field"
+          v-if="column.name"
         )
           .column-header-title {{column.name}}
           .column-header-ManageIpTableFilters(
@@ -24,57 +24,57 @@
               @setFilter="setFilter"
               @setSorting="setSorting"
             )
-        .column-header(
-          v-if="column.type === 'action'"
-        )
-          .column-header-title {{column.name}}
-          .column-header-ManageIpTableFilters
     tbody
-      tr(
-        v-for="row in filteredSortedData"
-        :class="{'selected-row': checkRow(checkedItems, row)}"
-        :key="row.id"
-        @click="checkItem(row)"
+      template(
+        v-for="(row, index) in filteredSortedData"
       )
-        td.checkbox-cell
-          BaseCheckbox(
-            :checked="checkRow(checkedItems, row)"
-          )
-        td(
-          v-for="column in columns"
-          v-if="column.field"
-        ) {{row[column.field]}}
-        td.row-button-set-wrapper(
-          v-for="column in columns"
-          v-if="column.type === 'action'"
+        tr(
+          :class="{'selected-row': checkRow(checkedItems, row)}"
+          :key="row.id"
+          @click="expand(index)"
         )
-          .row-button-set
-            .row-button-edit.row-button-set-item(
-              title="Редактировать"
-              @click.stop="showModal({ component: 'CreateUser', showClose: false, modalContent: row })"
+          td.checkbox-cell(
+            @click="checkItem(row)"
+          )
+            BaseCheckbox(
+              :checked="checkRow(checkedItems, row)"
             )
-              svg.row-button-edit-svg(
-              )
-                  use(
-                    v-bind="{'xlink:href' : require('../../../public/img/sprite.svg') + '#edit'}"
-                  )
-            .row-button-remove.row-button-set-item(
-              title="Удалить"
-              @click.stop="showModal({ component: 'RemoveUser', showClose: false, modalContent: row })"
+          td(
+            v-for="column in columns"
+          )
+            .cell-item(
+              v-if="column.field"
+            ) {{row[column.field]}}
+            component(
+              v-if="column.render"
+              :is="{render: (createElement) => column.render(createElement, row)}"
             )
-              img.array-item-remove-icon(
-                src="../../../public/img/icons/remove-item.svg"
-              )
+            component(
+              v-if="column.component"
+              :is="column.component"
+              :row="row"
+            )
+        tr.toggle-row(
+          v-if="isToggle && expendedRow.indexOf(index) + 1"
+        )
+          td(
+            :colspan="columns.length + 1"
+          )
+            component(
+              :is="toggleComponent"
+              :row="row"
+            )
 </template>
 <script>
-import { mapActions } from 'vuex'
 import FilteredTableFilters from './FilteredTableFilters'
 export default {
   name: 'FilteredTable',
   components: { FilteredTableFilters },
   props: {
     tableData: Array,
-    columns: Array
+    columns: Array,
+    toggleComponent: Object,
+    isToggle: Boolean
   },
   data () {
     return {
@@ -85,7 +85,8 @@ export default {
         name: '',
         direction: 'asc'
       },
-      filteredSortedData: {}
+      filteredSortedData: {},
+      expendedRow: []
     }
   },
   watch: {
@@ -138,7 +139,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions('modal', ['showModal']),
     setFilteredSortedData () {
       const newData = this.innerData.filter(item => {
         let result = true
@@ -186,6 +186,14 @@ export default {
     },
     setSorting (sorting) {
       this.sorting = sorting
+    },
+    expand (index) {
+      const expendedIndex = this.expendedRow.indexOf(index)
+      if (expendedIndex + 1) {
+        this.expendedRow.splice(expendedIndex, 1)
+      } else {
+        this.expendedRow.push(index)
+      }
     }
   },
   created () {
@@ -229,6 +237,12 @@ tr {
 td {
   padding: 0px 35px;
 }
+.toggle-row {
+  background-color: #fafbfd;
+  &:hover {
+    background: none;
+  }
+}
 .checkbox-cell {
   width: 35px;
   padding: 0px 7px;
@@ -241,25 +255,5 @@ td {
 }
 .selected-row {
   background: #FFECD6;
-}
-.row-button-set-wrapper {
-  width: 80px;
-}
-.row-button-set {
-  display: flex;
-  align-items: center;
-}
-.row-button-set-item {
-  cursor: pointer;
-  margin: 0px 5px;
-}
-.row-button-edit-svg {
-  width: 23px;
-  height: 23px;
-  fill: #ff8900;
-}
-.row-button-remove {
-  width: 23px;
-  height: 25px;
 }
 </style>
