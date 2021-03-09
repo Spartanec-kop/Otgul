@@ -18,10 +18,12 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import FilteredTable from '../components/filteredTable/FilteredTable'
+import RowButtonSet from '../components/rowButtonSet/RowButtonSet'
 export default {
   name: 'Users',
   components: {
-    FilteredTable
+    FilteredTable,
+    RowButtonSet
   },
   data () {
     return {
@@ -53,7 +55,7 @@ export default {
         },
         {
           name: 'Действия',
-          type: 'action'
+          component: RowButtonSet
         }
       ]
     }

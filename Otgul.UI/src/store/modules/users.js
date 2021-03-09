@@ -27,6 +27,8 @@ export default {
         .then(response => {
           const users = response.data.map(user => {
             user.roleName = user.role.name
+            user.otdelName = user.otdel.nameOtdela
+            user.departmentName = user.department.name
             return user
           })
           commit('SET_USERS', users)
