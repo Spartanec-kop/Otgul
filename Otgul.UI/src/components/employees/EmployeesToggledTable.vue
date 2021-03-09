@@ -3,20 +3,38 @@
     FilteredTable(
       :tableData="users"
       :columns="columns"
+      :toggleComponent="toggleComponent"
+      :isToggle="true"
     )
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
 import FilteredTable from '../filteredTable/FilteredTable'
+import RowButtonSet from '../../components/rowButtonSet/RowButtonSet'
+import RowExpanded from '../../components/RowExpanded'
 export default {
   name: 'EmployeesToggledTable',
-  components: { FilteredTable },
+  components: {
+    FilteredTable,
+    RowButtonSet,
+    RowExpanded
+  },
   data () {
     return {
       columns: [
         {
-          field: 'login',
-          name: 'Логин',
+          field: 'tabel',
+          name: 'Таб. №',
+          filtered: true
+        },
+        {
+          field: 'otdelName',
+          name: 'Отдел',
+          filtered: true
+        },
+        {
+          field: 'departmentName',
+          name: 'Департамент',
           filtered: true
         },
         {
@@ -35,13 +53,13 @@ export default {
           filtered: true
         },
         {
-          field: 'roleName',
-          name: 'Роль',
+          field: 'workStatus',
+          name: 'Статус',
           filtered: true
         },
         {
           name: 'Действия',
-          type: 'action'
+          component: RowButtonSet
         }
       ]
     }
@@ -49,7 +67,10 @@ export default {
   computed: {
     ...mapState('users', {
       users: state => state.users
-    })
+    }),
+    toggleComponent () {
+      return RowExpanded
+    }
   },
   methods: {
     ...mapActions('users', ['fetchUsers'])
