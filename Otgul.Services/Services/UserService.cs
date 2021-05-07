@@ -17,10 +17,11 @@ namespace Otgul.Services.Services
         {
             _userRepository = userRepository;
         }
-        public void CreateUser(User user)
+        public User CreateUser(User user)
         {
-            _userRepository.Create(user);
+            User newUser = _userRepository.Create(user);
             _userRepository.Save();
+            return newUser;
         }
 
         public IEnumerable<User> GetActiveUser()

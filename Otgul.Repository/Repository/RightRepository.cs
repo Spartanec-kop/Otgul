@@ -19,9 +19,9 @@ namespace Otgul.DataBase.Repository.Repository
         {
             this.db = context;
         }
-        public void Create(Right item)
+        public Right Create(Right item)
         {
-            db.Rights.Add(item);
+            return db.Rights.Add(item).Entity;
         }
 
         public void Delete(long id)
@@ -33,7 +33,7 @@ namespace Otgul.DataBase.Repository.Repository
             }
         }
                 
-        public IEnumerable<Right> Find(Expression<Func<Right, bool>> predicate)
+        public IEnumerable<Right> Find(Expression<Func<Right, bool>> predicate, bool fullData)
         {
             IQueryable<Right> query = db.Rights.Where(predicate);
             return query;
@@ -44,7 +44,7 @@ namespace Otgul.DataBase.Repository.Repository
             return db.Rights.ToList();
         }
 
-        public Right GetId(int id)
+        public Right GetId(Int64 id)
         {
             return db.Rights.FirstOrDefault(s => s.Id == id);
         }

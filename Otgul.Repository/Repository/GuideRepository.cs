@@ -20,9 +20,9 @@ namespace Otgul.DataBase.Repository.Repository
             this.db = context;
         }
 
-        public void Create(Guide item)
+        public Guide Create(Guide item)
         {
-            db.Guides.Add(item);
+            return db.Guides.Add(item).Entity;
         }
 
         public void Delete(long id)
@@ -35,7 +35,7 @@ namespace Otgul.DataBase.Repository.Repository
         }
 
         
-        public IEnumerable<Guide> Find(Expression<Func<Guide, bool>> predicate)
+        public IEnumerable<Guide> Find(Expression<Func<Guide, bool>> predicate, bool fullData)
         {
             IQueryable<Guide> query = db.Guides.Where(predicate);
             return query;
@@ -46,7 +46,7 @@ namespace Otgul.DataBase.Repository.Repository
             return db.Guides.ToList();
         }
 
-        public Guide GetId(int id)
+        public Guide GetId(Int64 id)
         {
             return db.Guides.FirstOrDefault(s => s.Id == id);
         }

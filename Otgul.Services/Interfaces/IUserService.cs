@@ -8,7 +8,7 @@ namespace Otgul.Services.Interfaces
 {
     public interface IUserService
     {
-        void CreateUser(User user);
+        User CreateUser(User user);
         User GetUserFromId(int userId);
         User GetUserFromLogin(string login);
         Role GetUserRoleFromId(int userId);

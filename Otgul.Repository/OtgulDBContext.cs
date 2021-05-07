@@ -15,7 +15,7 @@ namespace Otgul.DataBase.Repository
         public DbSet<Otdel> Otdels { get; set; }
         public DbSet<Guide> Guides { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<OtgulRecord> Otgul { get; set; }
+        public DbSet<OtgulRecord> OtgulRecords { get; set; }
         public DbSet<Right> Rights { get; set; }
         public DbSet<RoleRight> RoleRights { get; set; }
         public DbSet<Role> Roles { get; set; }

@@ -20,39 +20,72 @@ namespace Otgul.DataBase.Repository.Repository
             this.db = context;
         }
 
-        public void Create(OtgulRecord item)
+        public OtgulRecord Create(OtgulRecord item)
         {
-            db.Otgul.Add(item);
+            return db.OtgulRecords.Add(item).Entity;
         }
 
         public void Delete(long id)
         {
-            OtgulRecord otgul = db.Otgul.Find(id);
+            OtgulRecord otgul = db.OtgulRecords.Find(id);
             if (otgul != null)
             {
-                db.Otgul.Remove(otgul);
+                db.OtgulRecords.Remove(otgul);
             }
         }
 
-        public IEnumerable<OtgulRecord> Find(Expression<Func<OtgulRecord, bool>> predicate)
+        public IEnumerable<OtgulRecord> Find(Expression<Func<OtgulRecord, bool>> predicate, bool fullData)
         {
-            IQueryable<OtgulRecord> query = db.Otgul.Where(predicate);
-            return query;
+            if (fullData)
+            {
+                IQueryable<OtgulRecord> query = db.OtgulRecords.
+                    Where(predicate)
+                    .Include(s => s.Guide)
+                    .Include(s => s.User)
+                    .ThenInclude(s => s.Department)
+                    .Include(s => s.User)
+                    .ThenInclude(s => s.Otdel)
+                    .Include(s => s.User)
+                    .ThenInclude(s => s.Role)
+                    .ThenInclude(f => f.RoleRights)
+                    .Include(s => s.User)
+                    .ThenInclude(s => s.UserRights)
+                    .ThenInclude(f => f.Right)
+
+                    .Include(s => s.Initiator)
+                    .ThenInclude(s => s.Department)
+                    .Include(s => s.Initiator)
+                    .ThenInclude(s => s.Otdel)
+                    .Include(s => s.Initiator)
+                    .ThenInclude(s => s.Role)
+                    .ThenInclude(f => f.RoleRights)
+                    .Include(s => s.Initiator)
+                    .ThenInclude(s => s.UserRights)
+                    .ThenInclude(f => f.Right);
+                return query;
+            }
+            else
+            {
+                IQueryable<OtgulRecord> query = db.OtgulRecords.
+                    Where(predicate);
+                return query;
+            }
+            
         }
 
         public IEnumerable<OtgulRecord> GetAll()
         {
-            return db.Otgul.ToList();
+            return db.OtgulRecords.ToList();
         }
 
-        public OtgulRecord GetId(int id)
+        public OtgulRecord GetId(Int64 id)
         {
-            return db.Otgul.FirstOrDefault(s => s.Id == id);
+            return db.OtgulRecords.FirstOrDefault(s => s.Id == id);
         }
 
         public int recordCount(Expression<Func<OtgulRecord, bool>> predicate)
         {
-            IQueryable<OtgulRecord> query = db.Otgul.Where(predicate);
+            IQueryable<OtgulRecord> query = db.OtgulRecords.Where(predicate);
             return query.Count();
         }
         public void Update(OtgulRecord item)

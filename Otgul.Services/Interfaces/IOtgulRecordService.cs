@@ -7,8 +7,11 @@ namespace Otgul.Services.Interfaces
 {
     public interface IOtgulRecordService
     {
-        void CreateOtgulRecord(OtgulRecord otgulRecord);
-        IEnumerable<OtgulRecord> GetOtgulRecordsFromUser(User user);
-        int GetFreeTimeUser(User user);
+        OtgulRecord CreateOtgulRecord(OtgulRecord otgulRecord);
+        OtgulRecord GetOtgulRecordFromId(Int64 id);
+        void UpdateOtgulRecord(OtgulRecord otgulRecord);
+        IEnumerable<OtgulRecord> GetOtgulRecordsFromUserId(int userId);
+        int GetFreeTimeUser(int userId);
+        bool CheckExistRecord(OtgulRecord otgulRecord);
     }
 }

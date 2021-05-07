@@ -22,6 +22,7 @@ namespace Otgul.Api
 
         public ViewUser Map(User user)
         {
+            if (user == null) return null;
             return new ViewUser
             {
                 Id = user.Id,
@@ -89,6 +90,36 @@ namespace Otgul.Api
                 RoleRights = role.RoleRights.Select(Map).ToList()
             };
         }
+        public OtgulRecord Map(ViewOtgulRecord viewOtgulRecord)
+        {
+            return new OtgulRecord
+            {
+                Id = viewOtgulRecord.Id,
+                User = Map(viewOtgulRecord.User),
+                Action = viewOtgulRecord.Action,
+                MinutCount = viewOtgulRecord.MinutCount,
+                Initiator = Map(viewOtgulRecord.Initiator),
+                Date = viewOtgulRecord.Date,
+                Guide = viewOtgulRecord.Guide,
+                EventDate = viewOtgulRecord.EventDate,
+                Comment = viewOtgulRecord.Comment
+            };
+        }
+        public ViewOtgulRecord Map(OtgulRecord otgulRecord)
+        {
+            return new ViewOtgulRecord
+            {
+                Id = otgulRecord.Id,
+                User = Map(otgulRecord.User),
+                Action = otgulRecord.Action,
+                MinutCount = otgulRecord.MinutCount,
+                Date = otgulRecord.Date,
+                Guide = otgulRecord.Guide,
+                EventDate = otgulRecord.EventDate,
+                Comment = otgulRecord.Comment,
+                Initiator = Map(otgulRecord.Initiator),
+            };
+        }
         private ViewRight Map(UserRight right)
         {
             if (right == null)
@@ -111,60 +142,5 @@ namespace Otgul.Api
                 Name = right.Right.Name
             };
         }
-        /*
-        private ViewPPERequestParam Map(PPERequestParam param)
-        {
-            return new ViewPPERequestParam
-            {
-                branch = Map(param.Branch),
-                name = param.Name,
-                nsg = Map(param.NSG),
-                num = param.Num,
-                value = param.Value,
-                nsdParam = param.NSDParam,
-                paramId = param.paramId,
-                deployedValue = param.DeployedValue
-            };
-        }
-
-        private ViewResponseBranch Map(Branch branch)
-        {
-            if (branch == null)
-                return null;
-
-            return new ViewResponseBranch
-            {
-                Name = branch.Name,
-                BranchId = branch.BranchId,
-                CreatedOn = branch.CreatedOn,
-                IsDeleted = branch.IsDeleted,
-                UpdatedOn = branch.UpdatedOn,
-                Status = branch.Status
-            };
-        }
-
-        private ViewNSG Map(NSG nsg)
-        {
-            if (nsg == null)
-                return null;
-
-            return new ViewNSG
-            {
-                NsgId = nsg.NSGId,
-                IsMaster = nsg.IsMaster
-            };
-        }
-
-        private ViewPPECustomerService Map(PPECustomerService service)
-        {
-            if (service == null)
-                return null;
-
-            return new ViewPPECustomerService
-            {
-                SysName = service.Service.SysName
-            };
-        }
-        */
     }
 }

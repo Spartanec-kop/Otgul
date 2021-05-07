@@ -3,25 +3,13 @@ import axios from '../../requests'
 export default {
   namespaced: true,
   state: {
-    users: [],
-    loginIsFail: true
+    daysOff: {}
   },
   mutations: {
-    SET_USERS: (state, users) => (state.users = users),
-    ADD_USER: (state, user) => (state.users.push(user)),
-    SET_FAIL_LOGIN: (state, loginIsFail) => (state.loginIsFail = loginIsFail),
-    REMOVE_USER: (state, user) => {
-      const userId = state.users.findIndex(f => f.id === user.id)
-      state.users.splice(userId, 1)
-    },
-    UPDATE_USER: (state, user) => {
-      const userId = state.users.findIndex(f => f.id === user.id)
-      state.users[userId] = user
-      state.users = JSON.parse(JSON.stringify(state.users))
-    }
+    ADD_DAYS_OFF: (state, userDaysOff) => (state.daysOff[userDaysOff.id] = userDaysOff.daysOff)
   },
   actions: {
-    fetchUsers ({ commit }) {
+    fetchDaysOffToUsers ({ commit }) {
       axios
         .get('/api/User/all')
         .then(response => {
@@ -47,9 +35,6 @@ export default {
       axios
         .post('/api/User', user)
         .then(response => {
-          response.data.roleName = response.data.role.name
-          response.data.otdelName = response.data.otdel.nameOtdela
-          response.data.departmentName = response.data.department.name
           commit('ADD_USER', response.data)
           dispatch('modal/closeModal', null, { root: true })
         })
@@ -59,9 +44,6 @@ export default {
       axios
         .put('/api/User', user)
         .then(response => {
-          response.data.roleName = response.data.role.name
-          response.data.otdelName = response.data.otdel.nameOtdela
-          response.data.departmentName = response.data.department.name
           commit('UPDATE_USER', response.data)
           dispatch('modal/closeModal', null, { root: true })
         })

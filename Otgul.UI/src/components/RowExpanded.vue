@@ -1,5 +1,9 @@
 <template lang="pug">
-  .expanded-body это тело развернутого объекта {{row ? row.id : 'undefined'}}
+  .expanded-body
+    header
+      .user-info
+      .day-off-info
+    .body
 </template>
 <script>
 export default {

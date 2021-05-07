@@ -44,11 +44,15 @@ namespace Otgul
             services.AddTransient<IDataBaseRepository<Otdel>, OtdelRepository>();
             services.AddTransient<IDataBaseRepository<Department>, DepartmentRepository>();
             services.AddTransient<IDataBaseRepository<Right>, RightRepository>();
+            services.AddTransient<IDataBaseRepository<OtgulRecord>, OtgulRecordRepository>();
+            services.AddTransient<IDataBaseRepository<Guide>, GuideRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IOtdelService, OtdelService>();
             services.AddTransient<IRightService, RightService>();
+            services.AddTransient<IOtgulRecordService, OtgulRecordService>();
             services.AddTransient<IDepartmentService, DepartmentService>();
+            services.AddTransient<IGuideService, GuideService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<Mapper, Mapper>();
             services.AddControllers();          

@@ -240,7 +240,7 @@ export default {
         return this.inTabel === null && this.user ? this.user.tabel : this.inTabel
       },
       set (value) {
-        this.inTabel = value
+        this.inTabel = Number(value)
       }
     }
   },

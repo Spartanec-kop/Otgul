@@ -9,6 +9,7 @@ import role from './modules/role'
 import otdel from './modules/otdel'
 import department from './modules/department'
 import right from './modules/right'
+import dayOff from './modules/dayOff'
 
 Vue.use(Vuex)
 
@@ -36,6 +37,7 @@ export default new Vuex.Store({
     role,
     otdel,
     department,
-    right
+    right,
+    dayOff
   }
 })

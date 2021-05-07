@@ -19,9 +19,9 @@ namespace Otgul.DataBase.Repository.Repository
         {
             this.db = context;
         }
-        public void Create(Role item)
+        public Role Create(Role item)
         {
-            db.Roles.Add(item);
+            return db.Roles.Add(item).Entity;
         }
 
         public void Delete(long id)
@@ -33,7 +33,7 @@ namespace Otgul.DataBase.Repository.Repository
             }
         }
                 
-        public IEnumerable<Role> Find(Expression<Func<Role, bool>> predicate)
+        public IEnumerable<Role> Find(Expression<Func<Role, bool>> predicate, bool fullData)
         {
             IQueryable<Role> query = db.Roles.Include(s => s.RoleRights).ThenInclude(f => f.Right).Where(predicate);
             return query;
@@ -44,7 +44,7 @@ namespace Otgul.DataBase.Repository.Repository
             return db.Roles.Include(s => s.RoleRights).ThenInclude(f => f.Right).ToList();
         }
 
-        public Role GetId(int id)
+        public Role GetId(Int64 id)
         {
             return db.Roles.Include(s => s.RoleRights).ThenInclude(f => f.Right).FirstOrDefault(s => s.Id == id);
         }

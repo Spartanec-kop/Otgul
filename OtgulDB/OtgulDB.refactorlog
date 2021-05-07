@@ -161,4 +161,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RightId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="295dc185-e5c9-4b08-9a68-c99c581d78db" ChangeDateTime="05/06/2021 16:39:22">
+    <Property Name="ElementName" Value="[dbo].[OtgulRecords].[data]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[OtgulRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1da257f2-b0b2-42bb-b659-02f37be7eaef" ChangeDateTime="05/06/2021 16:39:25">
+    <Property Name="ElementName" Value="[dbo].[OtgulRecords].[eventData]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[OtgulRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="eventDate" />
+  </Operation>
 </Operations>

@@ -72,12 +72,12 @@ namespace Otgul.Api.Controllers
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<ViewUser>> GetUser(int id)
         {
             User user = _userService.GetUserFromId(id);
             if (user != null)
             {
-                return user;
+                return _mapper.Map(user);
             }
             else
             {
@@ -92,8 +92,7 @@ namespace Otgul.Api.Controllers
             User tmpUser = _userService.GetUserFromLogin(viewUser.Login);
             if (tmpUser == null)
             {
-                _userService.CreateUser(_mapper.Map(viewUser));
-                return _mapper.Map(_userService.GetUserFromLogin(viewUser.Login));
+                return _mapper.Map(_userService.CreateUser(_mapper.Map(viewUser)));
             }
             else
             {
